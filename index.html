@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>N Mahidhar Reddy | AI Enthusiast & Future Innovator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #050508;
+      --bg-secondary: #0a0a10;
+      --bg-card: #101018;
+      --accent-primary: #ff2244;
+      --accent-secondary: #cc1133;
+      --accent-tertiary: #44ffaa;
+      --text-primary: #e8e8e8;
+      --text-secondary: #a0a0a0;
+      --text-muted: #505050;
+      --gradient-1: linear-gradient(135deg, #ff2244 0%, #cc1133 50%, #ff2244 100%);
+      --gradient-2: linear-gradient(135deg, #050508 0%, #101018 100%);
+      --glow-cyan: 0 0 60px rgba(255, 34, 68, 0.5);
+      --glow-purple: 0 0 60px rgba(204, 17, 51, 0.5);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+    }
+
+::-webkit-scrollbar-thumb {
+      background: #ff2244;
+      border-radius: 4px;
+    }
+
+    /* Animated Background */
+    .bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bg-canvas::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(ellipse at 20% 20%, rgba(224, 86, 253, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+      animation: bgFloat 20s ease-in-out infinite;
+    }
+
+    @keyframes bgFloat {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(2%, 2%) rotate(2deg); }
+      66% { transform: translate(-2%, 1%) rotate(-1deg); }
+    }
+
+    .grid-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 40px 80px;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 20px;
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      color: var(--accent-primary);
+      margin-bottom: 30px;
+      animation: fadeInDown 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--accent-primary);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.5; }
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.8s ease 0.2s forwards;
+      opacity: 0;
+    }
+
+    .hero h1 .name {
+      display: block;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      animation: fadeInUp 0.8s ease 0.4s forwards;
+      opacity: 0;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      animation: fadeInUp 0.8s ease 0.6s forwards;
+      opacity: 0;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.8s forwards;
+      opacity: 0;
+    }
+
+    .btn {
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .btn-primary {
+      background: var(--gradient-1);
+      color: var(--text-primary);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 40px rgba(0, 212, 255, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent-primary);
+    }
+
+    /* Floating Elements */
+    .floating-shapes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.5;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .shape-1 {
+      width: 300px;
+      height: 300px;
+      background: var(--accent-primary);
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+
+    .shape-2 {
+      width: 200px;
+      height: 200px;
+      background: var(--accent-secondary);
+      top: 60%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    .shape-3 {
+      width: 150px;
+      height: 150px;
+      background: var(--accent-tertiary);
+      bottom: 20%;
+      left: 15%;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* About Section */
+    .about {
+      padding: 100px 40px;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-label {
+      font-size: 0.9rem;
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-1);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .about-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(0, 212, 255, 0.3);
+    }
+
+    .about-card:hover::before {
+      opacity: 0.05;
+    }
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-1);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .card-description {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      position: relative;
+    }
+
+    /* Skills Section */
+    .skills {
+      padding: 100px 40px;
+      background: var(--bg-secondary);
+    }
+
+    .skills-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .skill-item {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .skill-item:hover {
+      border-color: var(--accent-primary);
+      transform: scale(1.02);
+    }
+
+    .skill-icon {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .skill-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .skill-bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: var(--gradient-1);
+      border-radius: 3px;
+      width: 0;
+      transition: width 1s ease;
+    }
+
+    /* Interests Section */
+    .interests {
+      padding: 100px 40px;
+    }
+
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .interest-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+
+    .interest-card:hover {
+      transform: translateY(-10px) rotate(1deg);
+      border-color: var(--accent-secondary);
+    }
+
+    .interest-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .interest-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .interest-description {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Quote Section */
+    .quote {
+      padding: 120px 40px;
+      background: var(--bg-secondary);
+      text-align: center;
+      position: relative;
+    }
+
+    .quote-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .quote-text {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 30px;
+    }
+
+    .quote-text span {
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Contact/Footer */
+    .contact {
+      padding: 100px 40px 40px;
+      text-align: center;
+    }
+
+    .contact-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .contact-email {
+      font-size: 1.2rem;
+      color: var(--accent-primary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .contact-email:hover {
+      text-shadow: 0 0 20px var(--accent-primary);
+    }
+
+    /* Game Section */
+    .game-section {
+      padding: 100px 40px;
+      background: var(--bg-secondary);
+      text-align: center;
+    }
+
+    .game-container {
+      max-width: 800px;
+      margin: 40px auto 0;
+      position: relative;
+    }
+
+    #gameCanvas {
+      border-radius: 20px;
+      border: 2px solid var(--accent-primary);
+      box-shadow: var(--glow-cyan);
+      background: #000000;
+    }
+
+    .game-ui {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .game-score, .game-high, .game-health {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .game-health-bar {
+      width: 200px;
+      height: 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 10px;
+    }
+
+    .health-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff2244, #cc1133);
+      transition: width 0.3s ease;
+    }
+
+    .game-score span, .game-high span {
+      color: var(--accent-primary);
+    }
+
+    .game-instructions {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-top: 15px;
+    }
+
+    .btn-game {
+      padding: 12px 30px;
+      background: var(--gradient-1);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      margin-left: 10px;
+    }
+
+    .btn-game:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+    }
+
+    .game-controls-info {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .control-key {
+      background: var(--bg-card);
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .control-key kbd {
+      background: var(--accent-primary);
+      color: var(--bg-primary);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      margin: 0 3px;
+    }
+
+    footer {
+      padding: 40px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer span {
+      color: var(--accent-primary);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 100px 20px 60px;
+      }
+
+      .about, .skills, .interests, .quote, .contact {
+        padding: 60px 20px;
+      }
+
+      .about-card, .interest-card {
+        padding: 30px;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+      }
+    }
+
+    /* Glass Effect */
+    .glass {
+      background: rgba(26, 26, 37, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Glow Text */
+    .glow-text {
+      text-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-canvas">
+    <div class="grid-pattern"></div>
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+  </div>
+
+  <nav>
+    <div class="logo">MR</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#interests">Interests</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#game">Game</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span>Available for Opportunities</span>
+      </div>
+      <h1>
+        <span class="name">N Mahidhar Reddy</span>
+        Future Innovator
+      </h1>
+      <p class="hero-subtitle">High School, Cumbum | AI Enthusiast | Aspiring Engineer</p>
+      <p class="hero-description">
+        A young mind passionate about Artificial Intelligence and technology. 
+        Currently studying to become an engineer who will innovate and shape the future. 
+        Turning curiosity into creation, one project at a time.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+        <a href="#about" class="btn btn-secondary">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="section-header">
+      <span class="section-label">Who Am I</span>
+      <h2 class="section-title">About Me</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="card-icon">🚀</div>
+        <h3 class="card-title">The Innovator</h3>
+        <p class="card-description">
+          A passionate high school student with big dreams. Always exploring AI and emerging technologies. I believe the best is yet to come.
+        </p>
+      </div>
+      <div class="about-card">
+        <div class="card-icon">🤖</div>
+        <h3 class="card-title">AI Enthusiast</h3>
+        <p class="card-description">
+          Artificial Intelligence isn't just a subject to me—it's the future I'm building towards. I love exploring how machines learn, think, and create. The possibilities are endless.
+        </p>
+      </div>
+      <div class="about-card">
+        <div class="card-icon">💡</div>
+        <h3 class="card-title">Future Engineer</h3>
+        <p class="card-description">
+          Engineering runs through my veins. I'm preparing to turn my passion into a profession. Innovation is my middle name, and impact is my game.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="skills" id="skills">
+    <div class="section-header">
+      <span class="section-label">What I Do</span>
+      <h2 class="section-title">Skills & Expertise</h2>
+    </div>
+    <div class="skills-container">
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-icon">🧠</div>
+          <h4 class="skill-name">AI & Machine Learning</h4>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="75%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon">💻</div>
+          <h4 class="skill-name">Programming Basics</h4>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="60%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon">🎨</div>
+          <h4 class="skill-name">Creative Design</h4>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="70%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon">🔬</div>
+          <h4 class="skill-name">Problem Solving</h4>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="80%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="interests" id="interests">
+    <div class="section-header">
+      <span class="section-label">What Drives Me</span>
+      <h2 class="section-title">My Interests</h2>
+    </div>
+    <div class="interests-grid">
+      <div class="interest-card">
+        <span class="interest-icon">🤖</span>
+        <h3 class="interest-title">Artificial Intelligence</h3>
+        <p class="interest-description">The frontier of human innovation. AI is where my passion lies—building intelligent systems that can change the world.</p>
+      </div>
+      <div class="interest-card">
+        <span class="interest-icon">🌌</span>
+        <h3 class="interest-title">Space Technology</h3>
+        <p class="interest-description">The final frontier calls to me. From rockets to rovers, I'm fascinated by humanity's quest to explore the cosmos.</p>
+      </div>
+      <div class="interest-card">
+        <span class="interest-icon">🧬</span>
+        <h3 class="interest-title">Biotechnology</h3>
+        <p class="interest-description">Where biology meets engineering. The future of medicine and human enhancement excites me deeply.</p>
+      </div>
+      <div class="interest-card">
+        <span class="interest-icon">⚡</span>
+        <h3 class="interest-title">Clean Energy</h3>
+        <p class="interest-description">Sustainable solutions for tomorrow. I'm passionate about renewable energy and its potential to reshape our world.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote">
+    <div class="quote-content">
+      <p class="quote-text">
+        "The best way to predict the future is to <span>create it</span>. 
+        Every expert was once a beginner. Every innovation started with a question."
+      </p>
+    </div>
+  </section>
+
+  <section class="game-section" id="game">
+    <div class="section-header">
+      <span class="section-label">Survive!</span>
+      <h2 class="section-title">ESCAPE THE MAZE - Horror Survival</h2>
+    </div>
+    <div class="game-container">
+      <div class="game-ui">
+        <div class="game-score">Time: <span id="scoreDisplay">0s</span></div>
+        <div class="game-health">Sanity: <div class="game-health-bar"><div class="health-fill" id="healthFill" style="width: 100%"></div></div></div>
+        <div class="game-high">Best: <span id="highDisplay">0s</span></div>
+      </div>
+      <canvas id="gameCanvas" width="700" height="500"></canvas>
+      <div class="game-controls-info">
+        <span class="control-key"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Move</span>
+        <span class="control-key"><kbd>Space</kbd> Run</span>
+        <span class="control-key"><kbd>E</kbd> Flashlight</span>
+      </div>
+      <p class="game-instructions">Find the exit! Avoid the shadow monster. Your flashlight attracts it...</p>
+      <button class="btn-game" id="startBtn">Enter the Maze</button>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2 class="contact-title">Let's Connect</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 30px; max-width: 500px; margin-left: auto; margin-right: auto;">
+      Whether you're interested in collaborating, mentoring, or just want to chat about AI and technology, feel free to reach out!
+    </p>
+    <a href="mailto:mahider.reddy@example.com" class="contact-email">
+      mahider.reddy@example.com
+    </a>
+  </section>
+
+  <footer>
+    <p>© 2026 <span>N Mahidhar Reddy</span>. All rights reserved. | Building the Future, One Day at a Time.</p>
+  </footer>
+
+  <script>
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Animate skill bars on scroll
+    const skillBars = document.querySelectorAll('.skill-progress');
+    
+    const observerOptions = {
+      threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          const width = bar.getAttribute('data-width');
+          bar.style.width = width;
+        }
+      });
+    }, observerOptions);
+
+    skillBars.forEach(bar => observer.observe(bar));
+
+    // Add parallax effect to shapes
+    document.addEventListener('mousemove', (e) => {
+      const shapes = document.querySelectorAll('.shape');
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+      shapes.forEach((shape, index) => {
+        const speed = (index + 1) * 5;
+        shape.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+      });
+    });
+
+    // Nav background on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(10, 10, 15, 0.95)';
+      } else {
+        nav.style.background = 'rgba(10, 10, 15, 0.8)';
+      }
+    });
+
+// Horror Maze Escape Game
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const startBtn = document.getElementById('startBtn');
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    const highDisplay = document.getElementById('highDisplay');
+    const healthFill = document.getElementById('healthFill');
+
+    let player = { x: 350, y: 450, size: 20, speed: 3, sanity: 100, flashlightOn: true };
+    let monster = { x: 100, y: 100, size: 35, speed: 1.5, awake: false, chaseTimer: 0 };
+    let maze = [];
+    let exit = { x: 0, y: 0 };
+    let walls = [];
+    let gameTime = 0;
+    let highTime = 0;
+    let gameRunning = false;
+    let animationId;
+    let keys = {};
+    let darkness = 0;
+    let footsteps = [];
+
+    document.addEventListener('keydown', (e) => { keys[e.key.toLowerCase()] = true; });
+    document.addEventListener('keyup', (e) => { keys[e.key.toLowerCase()] = false; });
+
+    function generateMaze() {
+      walls = [];
+      const cellSize = 50;
+      for (let x = 0; x < canvas.width; x += cellSize) {
+        walls.push({ x: x, y: 0, w: 2, h: cellSize });
+        walls.push({ x: x, y: canvas.height - cellSize, w: 2, h: cellSize });
+      }
+      for (let y = 0; y < canvas.height; y += cellSize) {
+        walls.push({ x: 0, y: y, w: canvas.width, h: 2 });
+        walls.push({ x: canvas.width - 2, y: y, w: canvas.width, h: 2 });
+      }
+      for (let i = 0; i < 25; i++) {
+        walls.push({
+          x: Math.random() * (canvas.width - 100) + 50,
+          y: Math.random() * (canvas.height - 200) + 50,
+          w: Math.random() * 80 + 30,
+          h: 8
+        });
+      }
+      exit = {
+        x: Math.random() * (canvas.width - 100) + 50,
+        y: Math.random() * 150 + 50
+      };
+    }
+
+    function checkWallCollision(newX, newY) {
+      for (let wall of walls) {
+        if (newX > wall.x - player.size && newX < wall.x + wall.w + player.size &&
+            newY > wall.y - player.size && newY < wall.y + wall.h + player.size) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function drawMaze() {
+      ctx.fillStyle = '#1a1a1a';
+      walls.forEach(wall => {
+        ctx.fillRect(wall.x, wall.y, wall.w, wall.h);
+      });
+      ctx.fillStyle = '#ff2244';
+      ctx.shadowBlur = 20;
+      ctx.shadowColor = '#ff2244';
+      ctx.beginPath();
+      ctx.arc(exit.x, exit.y, 15, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+
+    function drawPlayer() {
+      const flicker = Math.random() > 0.8;
+      if (player.flashlightOn && !flicker) {
+        const grad = ctx.createRadialGradient(player.x, player.y, 0, player.x, player.y, 120);
+        grad.addColorStop(0, 'rgba(255, 255, 200, 0.3)');
+        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(player.x - 150, player.y - 150, 300, 300);
+      }
+      ctx.fillStyle = '#e8e8e8';
+      ctx.beginPath();
+      ctx.arc(player.x, player.y, player.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#88ccff';
+      ctx.beginPath();
+      ctx.arc(player.x - 5, player.y - 5, 4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function drawMonster() {
+      if (monster.awake || Math.random() > 0.7) {
+        ctx.fillStyle = monster.awake ? '#ff2244' : '#440011';
+        ctx.shadowBlur = monster.awake ? 30 : 0;
+        ctx.shadowColor = '#ff2244';
+        
+        ctx.beginPath();
+        ctx.moveTo(monster.x, monster.y - monster.size);
+        ctx.lineTo(monster.x + monster.size, monster.y + monster.size);
+        ctx.lineTo(monster.x - monster.size, monster.y + monster.size);
+        ctx.closePath();
+        ctx.fill();
+        
+        ctx.fillStyle = '#ffff00';
+        ctx.beginPath();
+        ctx.arc(monster.x - 8, monster.y - 5, 4, 0, Math.PI * 2);
+        ctx.arc(monster.x + 8, monster.y - 5, 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    function updateMonster() {
+      const distToPlayer = Math.hypot(player.x - monster.x, player.y - monster.y);
+      const inLight = player.flashlightOn && distToPlayer < 120;
+      
+      if (inLight) {
+        monster.chaseTimer++;
+        if (monster.chaseTimer > 60) monster.awake = true;
+      } else {
+        monster.chaseTimer = Math.max(0, monster.chaseTimer - 2);
+      }
+      
+      if (monster.awake) {
+        const angle = Math.atan2(player.y - monster.y, player.x - monster.x);
+        monster.x += Math.cos(angle) * monster.speed;
+        monster.y += Math.sin(angle) * monster.speed;
+        
+        if (distToPlayer < player.size + monster.size) {
+          player.sanity -= 5;
+          healthFill.style.width = player.sanity + '%';
+          monster.x = player.x - Math.cos(angle) * 60;
+          monster.y = player.y - Math.sin(angle) * 60;
+          
+          if (player.sanity <= 0) gameOver();
+        }
+      } else {
+        const patrolSpeed = 0.5;
+        monster.x += Math.sin(gameTime * 0.02) * patrolSpeed;
+        monster.y += Math.cos(gameTime * 0.015) * patrolSpeed;
+        monster.x = Math.max(50, Math.min(canvas.width - 50, monster.x));
+        monster.y = Math.max(50, Math.min(canvas.height - 100, monster.y));
+      }
+    }
+
+    function movePlayer() {
+      let speed = player.speed;
+      if (keys[' ']) speed *= 1.8;
+      
+      if ((keys['w'] || keys['arrowup']) && player.y > 30 && !checkWallCollision(player.x, player.y - speed)) player.y -= speed;
+      if ((keys['s'] || keys['arrowdown']) && player.y < canvas.height - 30 && !checkWallCollision(player.x, player.y + speed)) player.y += speed;
+      if ((keys['a'] || keys['arrowleft']) && player.x > 30 && !checkWallCollision(player.x - speed, player.y)) player.x -= speed;
+      if ((keys['d'] || keys['arrowright']) && player.x < canvas.width - 30 && !checkWallCollision(player.x + speed, player.y)) player.x += speed;
+      
+      if (keys['e']) player.flashlightOn = !player.flashlightOn;
+    }
+
+    function draw() {
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      drawMaze();
+      drawMonster();
+      drawPlayer();
+      movePlayer();
+      updateMonster();
+      
+      gameTime++;
+      if (gameTime % 60 === 0) {
+        scoreDisplay.textContent = Math.floor(gameTime / 60) + 's';
+      }
+      
+      const distToExit = Math.hypot(player.x - exit.x, player.y - exit.y);
+      if (distToExit < 25) {
+        gameWin();
+        return;
+      }
+      
+      if (gameRunning) {
+        animationId = requestAnimationFrame(draw);
+      }
+    }
+
+    function startGame() {
+      if (gameRunning) return;
+      player.x = 350;
+      player.y = 450;
+      player.sanity = 100;
+      monster.x = 100;
+      monster.y = 100;
+      monster.awake = false;
+      monster.chaseTimer = 0;
+      gameTime = 0;
+      healthFill.style.width = '100%';
+      scoreDisplay.textContent = '0s';
+      generateMaze();
+      gameRunning = true;
+      startBtn.textContent = 'Escaping...';
+      startBtn.disabled = true;
+      draw();
+    }
+
+    function gameOver() {
+      gameRunning = false;
+      cancelAnimationFrame(animationId);
+      const time = Math.floor(gameTime / 60);
+      if (time > highTime) {
+        highTime = time;
+        highDisplay.textContent = highTime + 's';
+      }
+      startBtn.textContent = 'Try Again';
+      startBtn.disabled = false;
+      
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#ff2244';
+      ctx.font = 'bold 42px Syne';
+      ctx.textAlign = 'center';
+      ctx.shadowBlur = 20;
+      ctx.shadowColor = '#ff2244';
+      ctx.fillText('CAUGHT!', canvas.width / 2, canvas.height / 2 - 20);
+      ctx.font = '22px Outfit';
+      ctx.fillText('You survived ' + time + ' seconds', canvas.width / 2, canvas.height / 2 + 25);
+      ctx.shadowBlur = 0;
+    }
+
+    function gameWin() {
+      gameRunning = false;
+      cancelAnimationFrame(animationId);
+      const time = Math.floor(gameTime / 60);
+      if (time > highTime) {
+        highTime = time;
+        highDisplay.textContent = highTime + 's';
+      }
+      startBtn.textContent = 'Play Again';
+      startBtn.disabled = false;
+      
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.85)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#44ffaa';
+      ctx.font = 'bold 42px Syne';
+      ctx.textAlign = 'center';
+      ctx.shadowBlur = 20;
+      ctx.shadowColor = '#44ffaa';
+      ctx.fillText('ESCAPED!', canvas.width / 2, canvas.height / 2 - 20);
+      ctx.font = '22px Outfit';
+      ctx.fillText('Time: ' + time + ' seconds', canvas.width / 2, canvas.height / 2 + 25);
+      ctx.fillStyle = '#505050';
+      ctx.font = '18px Outfit';
+      ctx.fillText('Best: ' + highTime + ' seconds', canvas.width / 2, canvas.height / 2 + 55);
+      ctx.shadowBlur = 0;
+    }
+
+    startBtn.addEventListener('click', startGame);
+  </script>
+</body>
+</html>
