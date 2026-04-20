@@ -928,7 +928,7 @@
       <canvas id="gameCanvas" width="700" height="500"></canvas>
       <div class="game-controls-info">
         <span class="control-key"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Move</span>
-        <span class="control-key"><kbd>Space</kbd> Run</span>
+        <span class="control-key"><kbd>Shift</kbd> Run</span>
         <span class="control-key"><kbd>E</kbd> Flashlight</span>
       </div>
       <p class="game-instructions">Find the exit! Avoid the shadow monster. Your flashlight attracts it...</p>
@@ -1030,8 +1030,11 @@
     document.addEventListener('keydown', (e) => { 
       keys[e.key.toLowerCase()] = true; 
       keys[e.key] = true;
-      if(['w','a','s','d',' ','e','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) {
+      if(['w','a','s','d','e','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) {
         e.preventDefault();
+      }
+      if(e.key === ' ' && !gameRunning) {
+        startGame();
       }
     });
     document.addEventListener('keyup', (e) => { 
@@ -1164,7 +1167,7 @@
 
     function movePlayer() {
       let speed = player.speed;
-      if (keys[' '] || keys['Space']) speed *= 1.8;
+      if (keys['Shift']) speed *= 1.8;
       
       let canMove = true;
       let newX = player.x;
