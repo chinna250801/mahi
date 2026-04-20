@@ -576,107 +576,246 @@
       text-shadow: 0 0 20px var(--accent-primary);
     }
 
-    /* Game Section */
-    .game-section {
+    /* Truth or Dare Game */
+    .tod-section {
       padding: 100px 40px;
       background: var(--bg-secondary);
       text-align: center;
     }
 
-    .game-container {
+    .tod-container {
       max-width: 800px;
-      margin: 40px auto 0;
-      position: relative;
+      margin: 0 auto;
     }
 
-    #gameCanvas {
+    .players-setup {
+      background: var(--bg-card);
+      padding: 40px;
       border-radius: 20px;
-      border: 2px solid var(--accent-primary);
-      box-shadow: var(--glow-cyan);
-      background: #000000;
     }
 
-    .game-ui {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .players-setup h3 {
       margin-bottom: 20px;
+      font-size: 1.5rem;
     }
 
-    .game-score, .game-high, .game-health {
-      font-size: 1.3rem;
-      font-weight: 600;
-    }
-
-    .game-health-bar {
-      width: 200px;
-      height: 20px;
-      background: rgba(255,255,255,0.1);
+    .players-setup input {
+      padding: 15px 20px;
       border-radius: 10px;
-      overflow: hidden;
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 10px;
+      border: 2px solid var(--accent-primary);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 1rem;
+      width: 60%;
+      margin-right: 10px;
     }
 
-    .health-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #ff2244, #cc1133);
-      transition: width 0.3s ease;
+    .btn-add {
+      padding: 15px 25px;
+      background: var(--accent-tertiary);
+      color: var(--bg-primary);
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
     }
 
-    .game-score span, .game-high span {
-      color: var(--accent-primary);
+    .players-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+      justify-content: center;
     }
 
-    .game-instructions {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-top: 15px;
+    .player-tag {
+      background: var(--accent-primary);
+      color: var(--text-primary);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .btn-game {
-      padding: 12px 30px;
+    .player-tag span {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-start {
+      padding: 15px 40px;
       background: var(--gradient-1);
       color: var(--text-primary);
       border: none;
       border-radius: 10px;
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
       margin-top: 20px;
-      margin-left: 10px;
     }
 
-    .btn-game:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+    .game-area {
+      display: none;
     }
 
-    .game-controls-info {
+    .current-player {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: var(--accent-tertiary);
+    }
+
+    .wheel-container {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      margin: 0 auto 30px;
+    }
+
+    .wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(#ff2244 0deg 180deg, #44ffaa 180deg 360deg);
+      border: 5px solid var(--accent-primary);
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 30px;
-      margin-top: 15px;
-      flex-wrap: wrap;
+      box-shadow: 0 0 30px rgba(255,34,68,0.5);
+      transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
     }
 
-    .control-key {
-      background: var(--bg-card);
-      padding: 8px 15px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-    }
-
-    .control-key kbd {
-      background: var(--accent-primary);
+    .wheel-segment {
+      position: absolute;
+      font-size: 1.2rem;
+      font-weight: bold;
       color: var(--bg-primary);
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-weight: 600;
-      margin: 0 3px;
+    }
+
+    .wheel-segment.truth {
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .wheel-segment.dare {
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .wheel-pointer {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      z-index: 10;
+    }
+
+    .btn-spin {
+      padding: 18px 50px;
+      background: var(--gradient-1);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 15px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 30px var(--glow-cyan);
+      margin-bottom: 30px;
+    }
+
+    .btn-spin:hover {
+      transform: scale(1.05);
+    }
+
+    .result-card {
+      width: 300px;
+      height: 200px;
+      margin: 0 auto;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .result-card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card-front {
+      background: var(--accent-primary);
+      color: var(--text-primary);
+    }
+
+    .card-back {
+      background: var(--accent-tertiary);
+      color: var(--bg-primary);
+      transform: rotateY(180deg);
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .card-type {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .card-text {
+      font-size: 1.1rem;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .timer {
+      font-size: 1.5rem;
+      margin: 20px 0;
+      color: var(--accent-primary);
+    }
+
+    .difficulty-btns {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .btn-diff {
+      padding: 10px 25px;
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 2px solid var(--accent-primary);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-diff.active, .btn-diff:hover {
+      background: var(--accent-primary);
+      color: var(--text-primary);
     }
 
     footer {
@@ -780,9 +919,9 @@
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#interests">Interests</a></li>
-      <li><a href="#contact">Contact</a></li>
       <li><a href="#game">Game</a></li>
-    </ul>
+      <li><a href="#contact">Contact</a></li>
+      </ul>
   </nav>
 
   <section class="hero">
@@ -914,25 +1053,48 @@
     </div>
   </section>
 
-  <section class="game-section" id="game">
+  <section class="tod-section" id="game">
     <div class="section-header">
-      <span class="section-label">Survive!</span>
-      <h2 class="section-title">ESCAPE THE MAZE - Horror Survival</h2>
+      <span class="section-label">Fun Time!</span>
+      <h2 class="section-title">Truth or Dare 🎡</h2>
     </div>
-    <div class="game-container">
-      <div class="game-ui">
-        <div class="game-score">Time: <span id="scoreDisplay">0s</span></div>
-        <div class="game-health">Sanity: <div class="game-health-bar"><div class="health-fill" id="healthFill" style="width: 100%"></div></div></div>
-        <div class="game-high">Best: <span id="highDisplay">0s</span></div>
+    <div class="tod-container">
+      <div class="players-setup" id="playersSetup">
+        <h3>Add Players</h3>
+        <input type="text" id="playerNameInput" placeholder="Enter player name">
+        <button class="btn-add" id="addPlayerBtn">Add</button>
+        <div class="players-list" id="playersList"></div>
+        <button class="btn-start" id="startGameBtn">Start Game</button>
       </div>
-      <canvas id="gameCanvas" width="700" height="500"></canvas>
-      <div class="game-controls-info">
-        <span class="control-key"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Move</span>
-        <span class="control-key"><kbd>Shift</kbd> Run</span>
-        <span class="control-key"><kbd>E</kbd> Flashlight</span>
+      <div class="game-area" id="gameArea" style="display:none;">
+        <div class="current-player" id="currentPlayer">Player: </div>
+        <div class="wheel-container">
+          <div class="wheel" id="wheel">
+            <div class="wheel-segment truth">TRUTH</div>
+            <div class="wheel-segment dare">DARE</div>
+          </div>
+          <div class="wheel-pointer">🔻</div>
+        </div>
+        <button class="btn-spin" id="spinBtn">SPIN!</button>
+        <div class="result-card" id="resultCard">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="card-icon">🤔</span>
+              <span class="card-type" id="cardType">?</span>
+            </div>
+            <div class="card-back">
+              <span class="card-icon" id="resultIcon">💥</span>
+              <p class="card-text" id="cardText"></p>
+            </div>
+          </div>
+        </div>
+        <div class="timer" id="timer">Time: 30s</div>
+        <div class="difficulty-btns">
+          <button class="btn-diff" data-level="easy">Easy</button>
+          <button class="btn-diff" data-level="medium">Medium</button>
+          <button class="btn-diff" data-level="hard">Hard</button>
+        </div>
       </div>
-      <p class="game-instructions">Find the exit! Avoid the shadow monster. Your flashlight attracts it...</p>
-      <button class="btn-game" id="startBtn">Enter the Maze</button>
     </div>
   </section>
 
@@ -1038,251 +1200,180 @@
         e.preventDefault();
       }
     });
-    document.addEventListener('keyup', (e) => { 
-      keysPressed[e.code] = false;
+
+    // Truth or Dare Game
+    const truthQuestions = [
+      "What's your biggest fear?", "What's the most embarrassing thing you've done?", "Who is your secret crush?",
+      "What's your worst habit?", "What's a secret you've never told anyone?", "What's the biggest lie you've told?",
+      "What's your biggest regret?", "Who is your best friend and why?", "What's the weirdest dream you've had?",
+      "What's your hidden talent?", "What would you do if you were invisible?", "What's your guilty pleasure?",
+      "What's the most trouble you've gotten into?", "What's your biggest pet peeve?", "What's something you're proud of?",
+      "What's your most unpopular opinion?", "What's the last thing you searched on your phone?",
+      "What's your biggest insecurity?", "If you could swap lives with anyone, who would it be?",
+      "What's the craziest thing on your bucket list?", "What's your favorite memory with friends?",
+      "What's your most embarrassing moment?", "What's something you'd change about yourself?",
+      "What's your favorite thing about yourself?", "What's the worst gift you've ever received?",
+      "What's your biggest secret wish?", "What's the most childish thing you still do?",
+      "Who was your first celebrity crush?", "What's your comfort food?", "What's the bravest thing you've done?"
+    ];
+
+    const dareChallenges = [
+      "Do 10 pushups right now!", "Sing a song of your choice!", "Dance without music for 30 seconds!",
+      "Talk with your tongue sticking out for 1 minute!", "Do your best impression of someone in the room!",
+      "Let someone draw a mustache on your face!", "Keep your eyes closed until your next turn!",
+      "Do your best animal impression!", "Speak in an accent for the next 3 rounds!",
+      "Let the group give you a new hairstyle!", "Eat a spoonful of condiment chosen by others!",
+      "Do your best scary face!", "Walk backwards everywhere for the next 5 minutes!",
+      "Say something nice about every person in the room!", "Do 20 jumping jacks!",
+      "Let someone tickle you for 30 seconds!", "Do your best celebrity impression!",
+      "Make everyone laugh within 30 seconds!", "Do the worm or show your best dance move!",
+      "Speak only in questions for 2 rounds!", "Let someone post anything on your social media!",
+      "Show the last photo you took!", "Do your best model walk!", "Howl like a wolf!",
+      "Hold a plank for 30 seconds!", "Recite the alphabet backwards!", "Make up a rap about the group!",
+      "Let the person to your right style your hair!", "Do your best evil laugh!",
+      "Talk in third person for 3 rounds!", "Eat a raw piece of garlic!"
+    ];
+
+    let players = [];
+    let currentPlayerIndex = 0;
+    let currentDifficulty = 'easy';
+    let isSpinning = false;
+    let timerInterval = null;
+
+    const playerNameInput = document.getElementById('playerNameInput');
+    const addPlayerBtn = document.getElementById('addPlayerBtn');
+    const playersList = document.getElementById('playersList');
+    const startGameBtn = document.getElementById('startGameBtn');
+    const playersSetup = document.getElementById('playersSetup');
+    const gameArea = document.getElementById('gameArea');
+    const currentPlayerEl = document.getElementById('currentPlayer');
+    const wheel = document.getElementById('wheel');
+    const spinBtn = document.getElementById('spinBtn');
+    const resultCard = document.getElementById('resultCard');
+    const cardType = document.getElementById('cardType');
+    const cardText = document.getElementById('cardText');
+    const resultIcon = document.getElementById('resultIcon');
+    const timerEl = document.getElementById('timer');
+
+    addPlayerBtn.addEventListener('click', () => {
+      const name = playerNameInput.value.trim();
+      if (name) {
+        players.push(name);
+        playerNameInput.value = '';
+        updatePlayersList();
+      }
     });
 
-    function generateMaze() {
-      walls = [];
-      const cellSize = 50;
-      for (let x = 0; x < canvas.width; x += cellSize) {
-        walls.push({ x: x, y: 0, w: 2, h: cellSize });
-        walls.push({ x: x, y: canvas.height - cellSize, w: 2, h: cellSize });
-      }
-      for (let y = 0; y < canvas.height; y += cellSize) {
-        walls.push({ x: 0, y: y, w: canvas.width, h: 2 });
-        walls.push({ x: canvas.width - 2, y: y, w: canvas.width, h: 2 });
-      }
-      for (let i = 0; i < 25; i++) {
-        walls.push({
-          x: Math.random() * (canvas.width - 100) + 50,
-          y: Math.random() * (canvas.height - 200) + 50,
-          w: Math.random() * 80 + 30,
-          h: 8
-        });
-      }
-      exit = {
-        x: Math.random() * (canvas.width - 100) + 50,
-        y: Math.random() * 150 + 50
-      };
-    }
-
-    function checkWallCollision(newX, newY) {
-      for (let wall of walls) {
-        if (newX > wall.x - player.size && newX < wall.x + wall.w + player.size &&
-            newY > wall.y - player.size && newY < wall.y + wall.h + player.size) {
-          return true;
+    playerNameInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const name = playerNameInput.value.trim();
+        if (name) {
+          players.push(name);
+          playerNameInput.value = '';
+          updatePlayersList();
         }
       }
-      return false;
+    });
+
+    function updatePlayersList() {
+      playersList.innerHTML = players.map((p, i) => 
+        `<span class="player-tag">${p} <span onclick="removePlayer(${i})">×</span></span>`
+      ).join('');
     }
 
-    function drawMaze() {
-      ctx.fillStyle = '#1a1a1a';
-      walls.forEach(wall => {
-        ctx.fillRect(wall.x, wall.y, wall.w, wall.h);
-      });
-      ctx.fillStyle = '#ff2244';
-      ctx.shadowBlur = 20;
-      ctx.shadowColor = '#ff2244';
-      ctx.beginPath();
-      ctx.arc(exit.x, exit.y, 15, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.shadowBlur = 0;
-    }
+    window.removePlayer = function(index) {
+      players.splice(index, 1);
+      updatePlayersList();
+    };
 
-    function drawPlayer() {
-      const flicker = Math.random() > 0.8;
-      if (player.flashlightOn && !flicker) {
-        const grad = ctx.createRadialGradient(player.x, player.y, 0, player.x, player.y, 120);
-        grad.addColorStop(0, 'rgba(255, 255, 200, 0.3)');
-        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-        ctx.fillStyle = grad;
-        ctx.fillRect(player.x - 150, player.y - 150, 300, 300);
-      }
-      ctx.fillStyle = '#e8e8e8';
-      ctx.beginPath();
-      ctx.arc(player.x, player.y, player.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = '#88ccff';
-      ctx.beginPath();
-      ctx.arc(player.x - 5, player.y - 5, 4, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    function drawMonster() {
-      if (monster.awake || Math.random() > 0.7) {
-        ctx.fillStyle = monster.awake ? '#ff2244' : '#440011';
-        ctx.shadowBlur = monster.awake ? 30 : 0;
-        ctx.shadowColor = '#ff2244';
-        
-        ctx.beginPath();
-        ctx.moveTo(monster.x, monster.y - monster.size);
-        ctx.lineTo(monster.x + monster.size, monster.y + monster.size);
-        ctx.lineTo(monster.x - monster.size, monster.y + monster.size);
-        ctx.closePath();
-        ctx.fill();
-        
-        ctx.fillStyle = '#ffff00';
-        ctx.beginPath();
-        ctx.arc(monster.x - 8, monster.y - 5, 4, 0, Math.PI * 2);
-        ctx.arc(monster.x + 8, monster.y - 5, 4, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      }
-    }
-
-    function updateMonster() {
-      const distToPlayer = Math.hypot(player.x - monster.x, player.y - monster.y);
-      const inLight = player.flashlightOn && distToPlayer < 120;
-      
-      if (inLight) {
-        monster.chaseTimer++;
-        if (monster.chaseTimer > 60) monster.awake = true;
-      } else {
-        monster.chaseTimer = Math.max(0, monster.chaseTimer - 2);
-      }
-      
-      if (monster.awake) {
-        const angle = Math.atan2(player.y - monster.y, player.x - monster.x);
-        monster.x += Math.cos(angle) * monster.speed;
-        monster.y += Math.sin(angle) * monster.speed;
-        
-        if (distToPlayer < player.size + monster.size) {
-          player.sanity -= 5;
-          healthFill.style.width = player.sanity + '%';
-          monster.x = player.x - Math.cos(angle) * 60;
-          monster.y = player.y - Math.sin(angle) * 60;
-          
-          if (player.sanity <= 0) gameOver();
-        }
-      } else {
-        const patrolSpeed = 0.5;
-        monster.x += Math.sin(gameTime * 0.02) * patrolSpeed;
-        monster.y += Math.cos(gameTime * 0.015) * patrolSpeed;
-        monster.x = Math.max(50, Math.min(canvas.width - 50, monster.x));
-        monster.y = Math.max(50, Math.min(canvas.height - 100, monster.y));
-      }
-    }
-
-    function movePlayer() {
-      let speed = player.speed;
-      if (keysPressed['ShiftLeft'] || keysPressed['ShiftRight']) speed *= 1.8;
-      
-      let newX = player.x;
-      let newY = player.y;
-      
-      if (keysPressed['KeyW'] || keysPressed['ArrowUp']) newY -= speed;
-      if (keysPressed['KeyS'] || keysPressed['ArrowDown']) newY += speed;
-      if (keysPressed['KeyA'] || keysPressed['ArrowLeft']) newX -= speed;
-      if (keysPressed['KeyD'] || keysPressed['ArrowRight']) newX += speed;
-      
-      if (newX > 30 && newX < canvas.width - 30 && !checkWallCollision(newX, player.y)) player.x = newX;
-      if (newY > 30 && newY < canvas.height - 30 && !checkWallCollision(player.x, newY)) player.y = newY;
-      
-      if (keysPressed['KeyE']) {
-        player.flashlightOn = !player.flashlightOn;
-        keysPressed['KeyE'] = false;
-      }
-    }
-
-    function draw() {
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      drawMaze();
-      drawMonster();
-      drawPlayer();
-      movePlayer();
-      updateMonster();
-      
-      gameTime++;
-      if (gameTime % 60 === 0) {
-        scoreDisplay.textContent = Math.floor(gameTime / 60) + 's';
-      }
-      
-      const distToExit = Math.hypot(player.x - exit.x, player.y - exit.y);
-      if (distToExit < 25) {
-        gameWin();
+    startGameBtn.addEventListener('click', () => {
+      if (players.length < 2) {
+        alert('Add at least 2 players!');
         return;
       }
+      playersSetup.style.display = 'none';
+      gameArea.style.display = 'block';
+      updateCurrentPlayer();
+    });
+
+    function updateCurrentPlayer() {
+      currentPlayerEl.textContent = `Player: ${players[currentPlayerIndex]}`;
+    }
+
+    document.querySelectorAll('.btn-diff').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.btn-diff').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentDifficulty = btn.dataset.level;
+      });
+    });
+
+    document.querySelector('.btn-diff[data-level="easy"]').classList.add('active');
+
+    spinBtn.addEventListener('click', spinWheel);
+    resultCard.addEventListener('click', () => {
+      resultCard.classList.toggle('flipped');
+    });
+
+    function spinWheel() {
+      if (isSpinning) return;
+      isSpinning = true;
+      spinBtn.disabled = true;
+      resultCard.classList.remove('flipped');
       
-      if (gameRunning) {
-        animationId = requestAnimationFrame(draw);
+      const rotation = 1800 + Math.random() * 360;
+      wheel.style.transform = `rotate(${rotation}deg)`;
+      
+      setTimeout(() => {
+        const isTruth = rotation % 360 < 180;
+        showResult(isTruth);
+        isSpinning = false;
+        spinBtn.disabled = false;
+      }, 3000);
+    }
+
+    function showResult(isTruth) {
+      const isDare = !isTruth;
+      cardType.textContent = isTruth ? 'TRUTH' : 'DARE';
+      cardIcon = isTruth ? '🤔' : '😈';
+      document.querySelector('.card-front .card-icon').textContent = cardIcon;
+      resultIcon.textContent = isTruth ? '🤔' : '💥';
+      
+      let questions = isTruth ? truthQuestions : dareChallenges;
+      let filtered = questions;
+      
+      if (currentDifficulty === 'easy') filtered = questions.slice(0, 10);
+      else if (currentDifficulty === 'medium') filtered = questions.slice(10, 20);
+      
+      cardText.textContent = filtered[Math.floor(Math.random() * filtered.length)];
+      
+      resultCard.classList.add('flipped');
+      
+      if (isDare) {
+        startTimer();
+      } else {
+        timerEl.textContent = 'Truth - No timer needed!';
       }
     }
 
-    function startGame() {
-      if (gameRunning) return;
-      player.x = 350;
-      player.y = 450;
-      player.sanity = 100;
-      monster.x = 100;
-      monster.y = 100;
-      monster.awake = false;
-      monster.chaseTimer = 0;
-      gameTime = 0;
-      healthFill.style.width = '100%';
-      scoreDisplay.textContent = '0s';
-      generateMaze();
-      gameRunning = true;
-      startBtn.textContent = 'Escaping...';
-      startBtn.disabled = true;
-      draw();
+    function startTimer() {
+      let timeLeft = 30;
+      timerEl.textContent = `Time: ${timeLeft}s`;
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerEl.textContent = `Time: ${timeLeft}s`;
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          timerEl.textContent = "Time's up!";
+        }
+      }, 1000);
     }
 
-    function gameOver() {
-      gameRunning = false;
-      cancelAnimationFrame(animationId);
-      const time = Math.floor(gameTime / 60);
-      if (time > highTime) {
-        highTime = time;
-        highDisplay.textContent = highTime + 's';
-      }
-      startBtn.textContent = 'Try Again';
-      startBtn.disabled = false;
-      
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#ff2244';
-      ctx.font = 'bold 42px Syne';
-      ctx.textAlign = 'center';
-      ctx.shadowBlur = 20;
-      ctx.shadowColor = '#ff2244';
-      ctx.fillText('CAUGHT!', canvas.width / 2, canvas.height / 2 - 20);
-      ctx.font = '22px Outfit';
-      ctx.fillText('You survived ' + time + ' seconds', canvas.width / 2, canvas.height / 2 + 25);
-      ctx.shadowBlur = 0;
-    }
-
-    function gameWin() {
-      gameRunning = false;
-      cancelAnimationFrame(animationId);
-      const time = Math.floor(gameTime / 60);
-      if (time > highTime) {
-        highTime = time;
-        highDisplay.textContent = highTime + 's';
-      }
-      startBtn.textContent = 'Play Again';
-      startBtn.disabled = false;
-      
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.85)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#44ffaa';
-      ctx.font = 'bold 42px Syne';
-      ctx.textAlign = 'center';
-      ctx.shadowBlur = 20;
-      ctx.shadowColor = '#44ffaa';
-      ctx.fillText('ESCAPED!', canvas.width / 2, canvas.height / 2 - 20);
-      ctx.font = '22px Outfit';
-      ctx.fillText('Time: ' + time + ' seconds', canvas.width / 2, canvas.height / 2 + 25);
-      ctx.fillStyle = '#505050';
-      ctx.font = '18px Outfit';
-      ctx.fillText('Best: ' + highTime + ' seconds', canvas.width / 2, canvas.height / 2 + 55);
-      ctx.shadowBlur = 0;
-    }
-
-    startBtn.addEventListener('click', startGame);
+    setTimeout(() => {
+      currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+      updateCurrentPlayer();
+    }, 5000);
   </script>
 </body>
 </html>
