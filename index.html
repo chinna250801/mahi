@@ -1027,8 +1027,17 @@
     let darkness = 0;
     let footsteps = [];
 
-    document.addEventListener('keydown', (e) => { keys[e.key.toLowerCase()] = true; });
-    document.addEventListener('keyup', (e) => { keys[e.key.toLowerCase()] = false; });
+    document.addEventListener('keydown', (e) => { 
+      keys[e.key.toLowerCase()] = true; 
+      keys[e.key] = true;
+      if(['w','a','s','d',' ','e','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) {
+        e.preventDefault();
+      }
+    });
+    document.addEventListener('keyup', (e) => { 
+      keys[e.key.toLowerCase()] = false;
+      keys[e.key] = false;
+    });
 
     function generateMaze() {
       walls = [];
@@ -1155,14 +1164,25 @@
 
     function movePlayer() {
       let speed = player.speed;
-      if (keys[' ']) speed *= 1.8;
+      if (keys[' '] || keys['Space']) speed *= 1.8;
       
-      if ((keys['w'] || keys['arrowup']) && player.y > 30 && !checkWallCollision(player.x, player.y - speed)) player.y -= speed;
-      if ((keys['s'] || keys['arrowdown']) && player.y < canvas.height - 30 && !checkWallCollision(player.x, player.y + speed)) player.y += speed;
-      if ((keys['a'] || keys['arrowleft']) && player.x > 30 && !checkWallCollision(player.x - speed, player.y)) player.x -= speed;
-      if ((keys['d'] || keys['arrowright']) && player.x < canvas.width - 30 && !checkWallCollision(player.x + speed, player.y)) player.x += speed;
+      let canMove = true;
+      let newX = player.x;
+      let newY = player.y;
       
-      if (keys['e']) player.flashlightOn = !player.flashlightOn;
+      if (keys['w'] || keys['W'] || keys['ArrowUp']) newY -= speed;
+      if (keys['s'] || keys['S'] || keys['ArrowDown']) newY += speed;
+      if (keys['a'] || keys['A'] || keys['ArrowLeft']) newX -= speed;
+      if (keys['d'] || keys['D'] || keys['ArrowRight']) newX += speed;
+      
+      if (newX > 30 && newX < canvas.width - 30 && !checkWallCollision(newX, player.y)) player.x = newX;
+      if (newY > 30 && newY < canvas.height - 30 && !checkWallCollision(player.x, newY)) player.y = newY;
+      
+      if (keys['e'] || keys['E']) {
+        player.flashlightOn = !player.flashlightOn;
+        keys['e'] = false;
+        keys['E'] = false;
+      }
     }
 
     function draw() {
