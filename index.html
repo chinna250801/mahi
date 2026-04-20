@@ -1026,20 +1026,20 @@
     let keys = {};
     let darkness = 0;
     let footsteps = [];
+    let keysPressed = {};
 
     document.addEventListener('keydown', (e) => { 
-      keys[e.key.toLowerCase()] = true; 
-      keys[e.key] = true;
-      if(['w','a','s','d','e','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) {
+      keysPressed[e.code] = true;
+      if(e.code === 'Space' && !gameRunning) {
         e.preventDefault();
-      }
-      if(e.key === ' ' && !gameRunning) {
         startGame();
+      }
+      if(['KeyW','KeyA','KeyS','KeyD','KeyE','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','ShiftLeft','ShiftRight'].includes(e.code)) {
+        e.preventDefault();
       }
     });
     document.addEventListener('keyup', (e) => { 
-      keys[e.key.toLowerCase()] = false;
-      keys[e.key] = false;
+      keysPressed[e.code] = false;
     });
 
     function generateMaze() {
@@ -1167,24 +1167,22 @@
 
     function movePlayer() {
       let speed = player.speed;
-      if (keys['Shift']) speed *= 1.8;
+      if (keysPressed['ShiftLeft'] || keysPressed['ShiftRight']) speed *= 1.8;
       
-      let canMove = true;
       let newX = player.x;
       let newY = player.y;
       
-      if (keys['w'] || keys['W'] || keys['ArrowUp']) newY -= speed;
-      if (keys['s'] || keys['S'] || keys['ArrowDown']) newY += speed;
-      if (keys['a'] || keys['A'] || keys['ArrowLeft']) newX -= speed;
-      if (keys['d'] || keys['D'] || keys['ArrowRight']) newX += speed;
+      if (keysPressed['KeyW'] || keysPressed['ArrowUp']) newY -= speed;
+      if (keysPressed['KeyS'] || keysPressed['ArrowDown']) newY += speed;
+      if (keysPressed['KeyA'] || keysPressed['ArrowLeft']) newX -= speed;
+      if (keysPressed['KeyD'] || keysPressed['ArrowRight']) newX += speed;
       
       if (newX > 30 && newX < canvas.width - 30 && !checkWallCollision(newX, player.y)) player.x = newX;
       if (newY > 30 && newY < canvas.height - 30 && !checkWallCollision(player.x, newY)) player.y = newY;
       
-      if (keys['e'] || keys['E']) {
+      if (keysPressed['KeyE']) {
         player.flashlightOn = !player.flashlightOn;
-        keys['e'] = false;
-        keys['E'] = false;
+        keysPressed['KeyE'] = false;
       }
     }
 
