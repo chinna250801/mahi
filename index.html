@@ -1,1379 +1,1437 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>N Mahidhar Reddy | AI Enthusiast & Future Innovator</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-primary: #050508;
-      --bg-secondary: #0a0a10;
-      --bg-card: #101018;
-      --accent-primary: #ff2244;
-      --accent-secondary: #cc1133;
-      --accent-tertiary: #44ffaa;
-      --text-primary: #e8e8e8;
-      --text-secondary: #a0a0a0;
-      --text-muted: #505050;
-      --gradient-1: linear-gradient(135deg, #ff2244 0%, #cc1133 50%, #ff2244 100%);
-      --gradient-2: linear-gradient(135deg, #050508 0%, #101018 100%);
-      --glow-cyan: 0 0 60px rgba(255, 34, 68, 0.5);
-      --glow-purple: 0 0 60px rgba(204, 17, 51, 0.5);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg-secondary);
-    }
-
-::-webkit-scrollbar-thumb {
-      background: #ff2244;
-      border-radius: 4px;
-    }
-
-    /* Animated Background */
-    .bg-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .bg-canvas::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: 
-        radial-gradient(ellipse at 20% 20%, rgba(224, 86, 253, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
-      animation: bgFloat 20s ease-in-out infinite;
-    }
-
-    @keyframes bgFloat {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      33% { transform: translate(2%, 2%) rotate(2deg); }
-      66% { transform: translate(-2%, 1%) rotate(-1deg); }
-    }
-
-    .grid-pattern {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
-    }
-
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      background: rgba(10, 10, 15, 0.8);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .logo {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent-primary);
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--text-primary);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 40px 80px;
-      position: relative;
-    }
-
-    .hero-content {
-      max-width: 900px;
-      text-align: center;
-      position: relative;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 20px;
-      background: rgba(0, 212, 255, 0.1);
-      border: 1px solid rgba(0, 212, 255, 0.3);
-      border-radius: 50px;
-      font-size: 0.9rem;
-      color: var(--accent-primary);
-      margin-bottom: 30px;
-      animation: fadeInDown 0.8s ease forwards;
-      opacity: 0;
-    }
-
-    .hero-badge::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      background: var(--accent-primary);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.5); opacity: 0.5; }
-    }
-
-    .hero h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(3rem, 10vw, 7rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      animation: fadeInUp 0.8s ease 0.2s forwards;
-      opacity: 0;
-    }
-
-    .hero h1 .name {
-      display: block;
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      color: var(--text-secondary);
-      margin-bottom: 40px;
-      animation: fadeInUp 0.8s ease 0.4s forwards;
-      opacity: 0;
-    }
-
-    .hero-description {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      max-width: 600px;
-      margin: 0 auto 40px;
-      animation: fadeInUp 0.8s ease 0.6s forwards;
-      opacity: 0;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      animation: fadeInUp 0.8s ease 0.8s forwards;
-      opacity: 0;
-    }
-
-    .btn {
-      padding: 16px 36px;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      border: none;
-      font-family: 'Outfit', sans-serif;
-    }
-
-    .btn-primary {
-      background: var(--gradient-1);
-      color: var(--text-primary);
-      box-shadow: var(--glow-cyan);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 40px rgba(0, 212, 255, 0.5);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text-primary);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: var(--accent-primary);
-    }
-
-    /* Floating Elements */
-    .floating-shapes {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .shape {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(60px);
-      opacity: 0.5;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .shape-1 {
-      width: 300px;
-      height: 300px;
-      background: var(--accent-primary);
-      top: 10%;
-      left: 5%;
-      animation-delay: 0s;
-    }
-
-    .shape-2 {
-      width: 200px;
-      height: 200px;
-      background: var(--accent-secondary);
-      top: 60%;
-      right: 10%;
-      animation-delay: 2s;
-    }
-
-    .shape-3 {
-      width: 150px;
-      height: 150px;
-      background: var(--accent-tertiary);
-      bottom: 20%;
-      left: 15%;
-      animation-delay: 4s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-
-    /* About Section */
-    .about {
-      padding: 100px 40px;
-      position: relative;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .section-label {
-      font-size: 0.9rem;
-      color: var(--accent-primary);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      margin-bottom: 15px;
-      display: block;
-    }
-
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .about-card {
-      background: var(--bg-card);
-      border-radius: 20px;
-      padding: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .about-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--gradient-1);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .about-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(0, 212, 255, 0.3);
-    }
-
-    .about-card:hover::before {
-      opacity: 0.05;
-    }
-
-    .card-icon {
-      width: 60px;
-      height: 60px;
-      background: var(--gradient-1);
-      border-radius: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 25px;
-      position: relative;
-    }
-
-    .card-title {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 15px;
-      position: relative;
-    }
-
-    .card-description {
-      color: var(--text-secondary);
-      line-height: 1.7;
-      position: relative;
-    }
-
-    /* Skills Section */
-    .skills {
-      padding: 100px 40px;
-      background: var(--bg-secondary);
-    }
-
-    .skills-container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-    }
-
-    .skill-item {
-      background: var(--bg-card);
-      border-radius: 16px;
-      padding: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: all 0.3s ease;
-    }
-
-    .skill-item:hover {
-      border-color: var(--accent-primary);
-      transform: scale(1.02);
-    }
-
-    .skill-icon {
-      font-size: 2rem;
-      margin-bottom: 15px;
-    }
-
-    .skill-name {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .skill-bar {
-      height: 6px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .skill-progress {
-      height: 100%;
-      background: var(--gradient-1);
-      border-radius: 3px;
-      width: 0;
-      transition: width 1s ease;
-    }
-
-    /* Interests Section */
-    .interests {
-      padding: 100px 40px;
-    }
-
-    .interests-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .interest-card {
-      background: var(--bg-card);
-      border-radius: 20px;
-      padding: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      text-align: center;
-      transition: all 0.4s ease;
-    }
-
-    .interest-card:hover {
-      transform: translateY(-10px) rotate(1deg);
-      border-color: var(--accent-secondary);
-    }
-
-    .interest-icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      display: block;
-    }
-
-    .interest-title {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .interest-description {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-    }
-
-    /* Quote Section */
-    .quote {
-      padding: 120px 40px;
-      background: var(--bg-secondary);
-      text-align: center;
-      position: relative;
-    }
-
-    .quote-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .quote-text {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      font-weight: 600;
-      line-height: 1.4;
-      margin-bottom: 30px;
-    }
-
-    .quote-text span {
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* Contact/Footer */
-    .contact {
-      padding: 100px 40px 40px;
-      text-align: center;
-    }
-
-    .contact-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    .contact-email {
-      font-size: 1.2rem;
-      color: var(--accent-primary);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .contact-email:hover {
-      text-shadow: 0 0 20px var(--accent-primary);
-    }
-
-    /* Truth or Dare Game */
-    .tod-section {
-      padding: 100px 40px;
-      background: var(--bg-secondary);
-      text-align: center;
-    }
-
-    .tod-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .players-setup {
-      background: var(--bg-card);
-      padding: 40px;
-      border-radius: 20px;
-    }
-
-    .players-setup h3 {
-      margin-bottom: 20px;
-      font-size: 1.5rem;
-    }
-
-    .players-setup input {
-      padding: 15px 20px;
-      border-radius: 10px;
-      border: 2px solid var(--accent-primary);
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      font-size: 1rem;
-      width: 60%;
-      margin-right: 10px;
-    }
-
-    .btn-add {
-      padding: 15px 25px;
-      background: var(--accent-tertiary);
-      color: var(--bg-primary);
-      border: none;
-      border-radius: 10px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .players-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px 0;
-      justify-content: center;
-    }
-
-    .player-tag {
-      background: var(--accent-primary);
-      color: var(--text-primary);
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .player-tag span {
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .btn-start {
-      padding: 15px 40px;
-      background: var(--gradient-1);
-      color: var(--text-primary);
-      border: none;
-      border-radius: 10px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-
-    .game-area {
-      display: none;
-    }
-
-    .current-player {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      color: var(--accent-tertiary);
-    }
-
-    .wheel-container {
-      position: relative;
-      width: 250px;
-      height: 250px;
-      margin: 0 auto 30px;
-    }
-
-    .wheel {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: conic-gradient(#ff2244 0deg 180deg, #44ffaa 180deg 360deg);
-      border: 5px solid var(--accent-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 30px rgba(255,34,68,0.5);
-      transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
-    }
-
-    .wheel-segment {
-      position: absolute;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--bg-primary);
-    }
-
-    .wheel-segment.truth {
-      top: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .wheel-segment.dare {
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .wheel-pointer {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2rem;
-      z-index: 10;
-    }
-
-    .btn-spin {
-      padding: 18px 50px;
-      background: var(--gradient-1);
-      color: var(--text-primary);
-      border: none;
-      border-radius: 15px;
-      font-size: 1.3rem;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 0 30px var(--glow-cyan);
-      margin-bottom: 30px;
-    }
-
-    .btn-spin:hover {
-      transform: scale(1.05);
-    }
-
-    .result-card {
-      width: 300px;
-      height: 200px;
-      margin: 0 auto;
-      perspective: 1000px;
-      cursor: pointer;
-    }
-
-    .card-inner {
-      width: 100%;
-      height: 100%;
-      transition: transform 0.6s;
-      transform-style: preserve-3d;
-    }
-
-    .result-card.flipped .card-inner {
-      transform: rotateY(180deg);
-    }
-
-    .card-front, .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .card-front {
-      background: var(--accent-primary);
-      color: var(--text-primary);
-    }
-
-    .card-back {
-      background: var(--accent-tertiary);
-      color: var(--bg-primary);
-      transform: rotateY(180deg);
-    }
-
-    .card-icon {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-
-    .card-type {
-      font-size: 2rem;
-      font-weight: bold;
-    }
-
-    .card-text {
-      font-size: 1.1rem;
-      text-align: center;
-      line-height: 1.5;
-    }
-
-    .timer {
-      font-size: 1.5rem;
-      margin: 20px 0;
-      color: var(--accent-primary);
-    }
-
-    .difficulty-btns {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    .btn-diff {
-      padding: 10px 25px;
-      background: var(--bg-card);
-      color: var(--text-secondary);
-      border: 2px solid var(--accent-primary);
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .btn-diff.active, .btn-diff:hover {
-      background: var(--accent-primary);
-      color: var(--text-primary);
-    }
-
-    footer {
-      padding: 40px;
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    footer p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    footer span {
-      color: var(--accent-primary);
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      nav {
-        padding: 15px 20px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        padding: 100px 20px 60px;
-      }
-
-      .about, .skills, .interests, .quote, .contact {
-        padding: 60px 20px;
-      }
-
-      .about-card, .interest-card {
-        padding: 30px;
-      }
-
-      .hero-cta {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .btn {
-        width: 100%;
-        max-width: 280px;
-        text-align: center;
-      }
-    }
-
-    /* Glass Effect */
-    .glass {
-      background: rgba(26, 26, 37, 0.7);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    /* Glow Text */
-    .glow-text {
-      text-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundForge — Ultimate Sound Board</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Orbitron', 'sans-serif'],
+                        body: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --bg: #08080f;
+            --surface: #0e0e1a;
+            --card: #131325;
+            --card-hover: #1a1a38;
+            --border: #222244;
+            --text: #e8e8f5;
+            --text-muted: #6a6a8e;
+            --funny: #ff2d75;
+            --animals: #00e676;
+            --movies: #ffab00;
+            --games: #00e5ff;
+            --custom: #b388ff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ===== Background Grid Pattern ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===== Floating Background Orbs ===== */
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-1 { width: 500px; height: 500px; background: var(--funny); top: -10%; left: -5%; animation: orbFloat1 22s ease-in-out infinite; }
+        .orb-2 { width: 400px; height: 400px; background: var(--games); bottom: -10%; right: -5%; animation: orbFloat2 18s ease-in-out infinite; }
+        .orb-3 { width: 350px; height: 350px; background: var(--animals); top: 50%; left: 50%; animation: orbFloat3 25s ease-in-out infinite; }
+        .orb-4 { width: 300px; height: 300px; background: var(--movies); top: 20%; right: 20%; animation: orbFloat1 20s ease-in-out infinite reverse; }
+
+        @keyframes orbFloat1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, -60px) scale(1.15); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+        @keyframes orbFloat2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-50px, -40px) scale(1.1); }
+        }
+        @keyframes orbFloat3 {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            33% { transform: translate(calc(-50% + 60px), calc(-50% - 40px)) scale(1.2); }
+            66% { transform: translate(calc(-50% - 40px), calc(-50% + 50px)) scale(0.85); }
+        }
+
+        /* ===== Content Wrapper ===== */
+        .content-wrap {
+            position: relative;
+            z-index: 10;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 20px 100px;
+        }
+
+        /* ===== Header ===== */
+        .app-header {
+            text-align: center;
+            padding: 30px 0 10px;
+        }
+        .app-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, var(--funny), var(--games), var(--animals));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+        .app-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        /* ===== Category Tabs ===== */
+        .cat-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin: 28px 0 20px;
+        }
+        .cat-tab {
+            padding: 8px 22px;
+            border-radius: 999px;
+            border: 1.5px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        .cat-tab:hover {
+            border-color: var(--tab-color);
+            color: var(--tab-color);
+            background: var(--tab-dim);
+        }
+        .cat-tab.active {
+            border-color: var(--tab-color);
+            color: var(--tab-color);
+            background: var(--tab-dim);
+            box-shadow: 0 0 20px var(--tab-dim), inset 0 0 20px var(--tab-dim);
+        }
+        .cat-tab:focus-visible {
+            outline: 2px solid var(--tab-color);
+            outline-offset: 2px;
+        }
+
+        /* ===== Utilities Bar ===== */
+        .utils-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+        .volume-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 8px 16px;
+        }
+        .volume-wrap i {
+            color: var(--text-muted);
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .volume-wrap:hover i { color: var(--games); }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 120px;
+            height: 5px;
+            background: var(--border);
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--games);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+            transition: box-shadow 0.2s;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+            box-shadow: 0 0 18px rgba(0, 229, 255, 0.8);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--games);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+
+        .util-btn {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 18px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            color: var(--text-muted);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+            outline: none;
+        }
+        .util-btn:hover {
+            border-color: var(--text-muted);
+            color: var(--text);
+            background: var(--card);
+        }
+        .util-btn.active-loop {
+            border-color: var(--funny);
+            color: var(--funny);
+            background: rgba(255, 45, 117, 0.1);
+            box-shadow: 0 0 15px rgba(255, 45, 117, 0.15);
+        }
+        .util-btn:focus-visible {
+            outline: 2px solid var(--games);
+            outline-offset: 2px;
+        }
+
+        /* ===== Sound Count ===== */
+        .sound-count {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== Sound Grid ===== */
+        .sound-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+            gap: 14px;
+        }
+
+        /* ===== Sound Button ===== */
+        .sound-btn {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 28px 12px 18px;
+            border-radius: 16px;
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            cursor: pointer;
+            transition: transform 0.15s ease, border-color 0.3s, box-shadow 0.3s, background 0.3s;
+            outline: none;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: btnEnter 0.45s ease forwards;
+        }
+        .sound-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            border-color: var(--cat-color);
+            background: var(--card-hover);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3), 0 0 20px var(--cat-dim);
+        }
+        .sound-btn:active {
+            transform: scale(0.93);
+            transition-duration: 0.06s;
+        }
+        .sound-btn:focus-visible {
+            outline: 2px solid var(--cat-color);
+            outline-offset: 2px;
+        }
+
+        .sound-btn.active {
+            border-color: var(--cat-color);
+            box-shadow: 0 0 25px var(--cat-dim), 0 0 50px var(--cat-dim), inset 0 0 30px var(--cat-dim);
+            background: var(--card-hover);
+        }
+        .sound-btn.active .btn-icon {
+            animation: iconPulse 0.4s ease-in-out infinite alternate;
+        }
+
+        @keyframes btnEnter {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes iconPulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.18); }
+        }
+
+        .btn-icon {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: var(--cat-dim);
+            color: var(--cat-color);
+            font-size: 22px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .btn-name {
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text);
+            text-align: center;
+            line-height: 1.2;
+        }
+        .btn-key {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--cat-color);
+            opacity: 0.5;
+            background: var(--cat-dim);
+            padding: 2px 6px;
+            border-radius: 5px;
+        }
+
+        /* Ripple effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--cat-color);
+            opacity: 0.35;
+            transform: scale(0);
+            animation: rippleAnim 0.55s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes rippleAnim {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        /* Add button (custom category) */
+        .add-btn {
+            border-style: dashed;
+            border-color: var(--custom);
+            opacity: 0.6;
+        }
+        .add-btn:hover { opacity: 1; }
+        .add-btn .btn-icon {
+            background: rgba(179, 136, 255, 0.08);
+            color: var(--custom);
+        }
+
+        /* ===== Visualizer ===== */
+        .visualizer-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            z-index: 20;
+            pointer-events: none;
+        }
+        .visualizer-bar canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* ===== Footer ===== */
+        .app-footer {
+            text-align: center;
+            padding: 30px 0 60px;
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        .app-footer kbd {
+            display: inline-block;
+            padding: 2px 7px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 10px;
+            color: var(--text-muted);
+            margin: 0 2px;
+        }
+
+        /* ===== Record Modal ===== */
+        dialog {
+            border: none;
+            background: transparent;
+            padding: 0;
+            max-width: 440px;
+            width: 90vw;
+        }
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+        }
+        .modal-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+        }
+        .modal-box h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--custom);
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+        .rec-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3px solid var(--border);
+            background: var(--card);
+            color: var(--text-muted);
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            outline: none;
+        }
+        .rec-circle:hover {
+            border-color: var(--funny);
+            color: var(--funny);
+        }
+        .rec-circle.recording {
+            border-color: var(--funny);
+            background: rgba(255, 45, 117, 0.15);
+            color: var(--funny);
+            animation: recPulse 1s ease-in-out infinite;
+        }
+        @keyframes recPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 45, 117, 0.3); }
+            50% { box-shadow: 0 0 0 15px rgba(255, 45, 117, 0); }
+        }
+        .rec-status {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 20px;
+            min-height: 20px;
+        }
+        .rec-status.error { color: var(--funny); }
+        .rec-input {
+            width: 100%;
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+            margin-bottom: 10px;
+        }
+        .rec-input:focus {
+            border-color: var(--custom);
+        }
+        .rec-input::placeholder { color: var(--text-muted); }
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 16px;
+        }
+        .modal-btn {
+            padding: 10px 24px;
+            border-radius: 10px;
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            color: var(--text-muted);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+            outline: none;
+        }
+        .modal-btn:hover {
+            border-color: var(--text-muted);
+            color: var(--text);
+        }
+        .modal-btn.save-btn {
+            background: var(--custom);
+            border-color: var(--custom);
+            color: #0a0a12;
+        }
+        .modal-btn.save-btn:hover {
+            background: #c49dff;
+            box-shadow: 0 0 20px rgba(179, 136, 255, 0.3);
+        }
+        .modal-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .preview-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            min-height: 36px;
+        }
+        .preview-btn {
+            padding: 6px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text-muted);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            outline: none;
+        }
+        .preview-btn:hover { border-color: var(--games); color: var(--games); }
+
+        /* ===== Reduced Motion ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 640px) {
+            .sound-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 10px;
+            }
+            .sound-btn { padding: 22px 8px 14px; gap: 8px; }
+            .btn-icon { width: 44px; height: 44px; font-size: 18px; }
+            .btn-name { font-size: 12px; }
+            .content-wrap { padding: 20px 14px 90px; }
+            input[type="range"] { width: 90px; }
+            .utils-bar { gap: 8px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="bg-canvas">
-    <div class="grid-pattern"></div>
-    <div class="floating-shapes">
-      <div class="shape shape-1"></div>
-      <div class="shape shape-2"></div>
-      <div class="shape shape-3"></div>
-    </div>
-  </div>
 
-  <nav>
-    <div class="logo">MR</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#interests">Interests</a></li>
-      <li><a href="#game">Game</a></li>
-      <li><a href="#contact">Contact</a></li>
-      </ul>
-  </nav>
+    <!-- Background Orbs -->
+    <div class="bg-orb orb-1" aria-hidden="true"></div>
+    <div class="bg-orb orb-2" aria-hidden="true"></div>
+    <div class="bg-orb orb-3" aria-hidden="true"></div>
+    <div class="bg-orb orb-4" aria-hidden="true"></div>
 
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span>Available for Opportunities</span>
-      </div>
-      <h1>
-        <span class="name">N Mahidhar Reddy</span>
-        Future Innovator
-      </h1>
-      <p class="hero-subtitle">High School, Cumbum | AI Enthusiast | Aspiring Engineer</p>
-      <p class="hero-description">
-        A young mind passionate about Artificial Intelligence and technology. 
-        Currently studying to become an engineer who will innovate and shape the future. 
-        Turning curiosity into creation, one project at a time.
-      </p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">Get In Touch</a>
-        <a href="#about" class="btn btn-secondary">Learn More</a>
-      </div>
-    </div>
-  </section>
+    <!-- Main Content -->
+    <div class="content-wrap">
 
-  <section class="about" id="about">
-    <div class="section-header">
-      <span class="section-label">Who Am I</span>
-      <h2 class="section-title">About Me</h2>
-    </div>
-    <div class="about-grid">
-      <div class="about-card">
-        <div class="card-icon">🚀</div>
-        <h3 class="card-title">The Innovator</h3>
-        <p class="card-description">
-          A passionate high school student with big dreams. Always exploring AI and emerging technologies. I believe the best is yet to come.
-        </p>
-      </div>
-      <div class="about-card">
-        <div class="card-icon">🤖</div>
-        <h3 class="card-title">AI Enthusiast</h3>
-        <p class="card-description">
-          Artificial Intelligence isn't just a subject to me—it's the future I'm building towards. I love exploring how machines learn, think, and create. The possibilities are endless.
-        </p>
-      </div>
-      <div class="about-card">
-        <div class="card-icon">💡</div>
-        <h3 class="card-title">Future Engineer</h3>
-        <p class="card-description">
-          Engineering runs through my veins. I'm preparing to turn my passion into a profession. Innovation is my middle name, and impact is my game.
-        </p>
-      </div>
-    </div>
-  </section>
+        <!-- Header -->
+        <header class="app-header">
+            <h1>SOUNDFORGE</h1>
+            <p>Tap &middot; Play &middot; React</p>
+        </header>
 
-  <section class="skills" id="skills">
-    <div class="section-header">
-      <span class="section-label">What I Do</span>
-      <h2 class="section-title">Skills & Expertise</h2>
-    </div>
-    <div class="skills-container">
-      <div class="skills-grid">
-        <div class="skill-item">
-          <div class="skill-icon">🧠</div>
-          <h4 class="skill-name">AI & Machine Learning</h4>
-          <div class="skill-bar">
-            <div class="skill-progress" data-width="75%"></div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon">💻</div>
-          <h4 class="skill-name">Programming Basics</h4>
-          <div class="skill-bar">
-            <div class="skill-progress" data-width="60%"></div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon">🎨</div>
-          <h4 class="skill-name">Creative Design</h4>
-          <div class="skill-bar">
-            <div class="skill-progress" data-width="70%"></div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon">🔬</div>
-          <h4 class="skill-name">Problem Solving</h4>
-          <div class="skill-bar">
-            <div class="skill-progress" data-width="80%"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- Category Tabs -->
+        <nav class="cat-tabs" role="tablist" aria-label="Sound categories">
+            <button class="cat-tab active" role="tab" data-cat="all" aria-selected="true">All Sounds</button>
+            <button class="cat-tab" role="tab" data-cat="funny" aria-selected="false">Funny</button>
+            <button class="cat-tab" role="tab" data-cat="animals" aria-selected="false">Animals</button>
+            <button class="cat-tab" role="tab" data-cat="movies" aria-selected="false">Movies</button>
+            <button class="cat-tab" role="tab" data-cat="games" aria-selected="false">Games</button>
+            <button class="cat-tab" role="tab" data-cat="custom" aria-selected="false">Custom</button>
+        </nav>
 
-  <section class="interests" id="interests">
-    <div class="section-header">
-      <span class="section-label">What Drives Me</span>
-      <h2 class="section-title">My Interests</h2>
-    </div>
-    <div class="interests-grid">
-      <div class="interest-card">
-        <span class="interest-icon">🤖</span>
-        <h3 class="interest-title">Artificial Intelligence</h3>
-        <p class="interest-description">The frontier of human innovation. AI is where my passion lies—building intelligent systems that can change the world.</p>
-      </div>
-      <div class="interest-card">
-        <span class="interest-icon">🌌</span>
-        <h3 class="interest-title">Space Technology</h3>
-        <p class="interest-description">The final frontier calls to me. From rockets to rovers, I'm fascinated by humanity's quest to explore the cosmos.</p>
-      </div>
-      <div class="interest-card">
-        <span class="interest-icon">🧬</span>
-        <h3 class="interest-title">Biotechnology</h3>
-        <p class="interest-description">Where biology meets engineering. The future of medicine and human enhancement excites me deeply.</p>
-      </div>
-      <div class="interest-card">
-        <span class="interest-icon">⚡</span>
-        <h3 class="interest-title">Clean Energy</h3>
-        <p class="interest-description">Sustainable solutions for tomorrow. I'm passionate about renewable energy and its potential to reshape our world.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="quote">
-    <div class="quote-content">
-      <p class="quote-text">
-        "The best way to predict the future is to <span>create it</span>. 
-        Every expert was once a beginner. Every innovation started with a question."
-      </p>
-    </div>
-  </section>
-
-  <section class="tod-section" id="game">
-    <div class="section-header">
-      <span class="section-label">Fun Time!</span>
-      <h2 class="section-title">Truth or Dare 🎡</h2>
-    </div>
-    <div class="tod-container">
-      <div class="players-setup" id="playersSetup">
-        <h3>Add Players</h3>
-        <input type="text" id="playerNameInput" placeholder="Enter player name">
-        <button class="btn-add" id="addPlayerBtn">Add</button>
-        <div class="players-list" id="playersList"></div>
-        <button class="btn-start" id="startGameBtn">Start Game</button>
-      </div>
-      <div class="game-area" id="gameArea" style="display:none;">
-        <div class="current-player" id="currentPlayer">Player: </div>
-        <div class="wheel-container">
-          <div class="wheel" id="wheel">
-            <div class="wheel-segment truth">TRUTH</div>
-            <div class="wheel-segment dare">DARE</div>
-          </div>
-          <div class="wheel-pointer">🔻</div>
-        </div>
-        <button class="btn-spin" id="spinBtn">SPIN!</button>
-        <div class="result-card" id="resultCard">
-          <div class="card-inner">
-            <div class="card-front">
-              <span class="card-icon">🤔</span>
-              <span class="card-type" id="cardType">?</span>
+        <!-- Utilities Bar -->
+        <div class="utils-bar">
+            <div class="volume-wrap">
+                <i class="fa-solid fa-volume-low"></i>
+                <input type="range" id="volumeSlider" min="0" max="100" value="80" aria-label="Volume control">
+                <i class="fa-solid fa-volume-high"></i>
             </div>
-            <div class="card-back">
-              <span class="card-icon" id="resultIcon">💥</span>
-              <p class="card-text" id="cardText"></p>
-            </div>
-          </div>
+            <button class="util-btn" id="stopBtn" aria-label="Stop all sounds">
+                <i class="fa-solid fa-stop"></i> Stop
+            </button>
+            <button class="util-btn" id="loopBtn" aria-label="Toggle loop mode">
+                <i class="fa-solid fa-repeat"></i> Loop
+            </button>
         </div>
-        <div class="timer" id="timer">Time: 30s</div>
-        <div class="difficulty-btns">
-          <button class="btn-diff" data-level="easy">Easy</button>
-          <button class="btn-diff" data-level="medium">Medium</button>
-          <button class="btn-diff" data-level="hard">Hard</button>
-        </div>
-      </div>
+
+        <!-- Sound Count -->
+        <div class="sound-count" id="soundCount" aria-live="polite"></div>
+
+        <!-- Sound Grid -->
+        <main>
+            <div class="sound-grid" id="soundGrid" role="group" aria-label="Sound buttons"></div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            Press <kbd>1</kbd>–<kbd>5</kbd> <kbd>Q</kbd>–<kbd>T</kbd> <kbd>A</kbd>–<kbd>G</kbd> for keyboard shortcuts
+        </footer>
     </div>
-  </section>
 
-  <section class="contact" id="contact">
-    <h2 class="contact-title">Let's Connect</h2>
-    <p style="color: var(--text-secondary); margin-bottom: 30px; max-width: 500px; margin-left: auto; margin-right: auto;">
-      Whether you're interested in collaborating, mentoring, or just want to chat about AI and technology, feel free to reach out!
-    </p>
-    <a href="mailto:mahider.reddy@example.com" class="contact-email">
-      mahider.reddy@example.com
-    </a>
-  </section>
+    <!-- Visualizer Bar -->
+    <div class="visualizer-bar" aria-hidden="true">
+        <canvas id="visualizer"></canvas>
+    </div>
 
-  <footer>
-    <p>© 2026 <span>N Mahidhar Reddy</span>. All rights reserved. | Building the Future, One Day at a Time.</p>
-  </footer>
+    <!-- Record Modal -->
+    <dialog id="recordModal">
+        <div class="modal-box">
+            <h2>Record Custom Sound</h2>
+            <button class="rec-circle" id="recCircleBtn" aria-label="Start recording">
+                <i class="fa-solid fa-microphone"></i>
+            </button>
+            <div class="rec-status" id="recStatus">Click to start recording</div>
+            <div class="preview-row" id="previewRow"></div>
+            <input type="text" class="rec-input" id="soundNameInput" placeholder="Name your sound..." maxlength="24">
+            <div class="modal-actions">
+                <button class="modal-btn" id="modalCancelBtn">Cancel</button>
+                <button class="modal-btn save-btn" id="modalSaveBtn" disabled>Save Sound</button>
+            </div>
+        </div>
+    </dialog>
 
-  <script>
-    // Smooth scroll for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+    <script>
+        /* ==========================================================
+           Audio Context & State
+        ========================================================== */
+        let audioCtx = null;
+        let masterGain = null;
+        let analyser = null;
+        let activeNodes = [];
+        let isLooping = false;
+        let loopTimer = null;
+        let lastPlayedSound = null;
+        let currentCategory = 'all';
+        let customSounds = [];
+        let visualizerRunning = false;
+        let noiseBuffer = null;
+
+        // Cached noise buffer for reuse
+        function getNoiseBuffer() {
+            if (noiseBuffer) return noiseBuffer;
+            const len = audioCtx.sampleRate;
+            noiseBuffer = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
+            const data = noiseBuffer.getChannelData(0);
+            for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+            return noiseBuffer;
         }
-      });
-    });
 
-    // Animate skill bars on scroll
-    const skillBars = document.querySelectorAll('.skill-progress');
-    
-    const observerOptions = {
-      threshold: 0.5
-    };
+        // Initialize audio context on first interaction
+        function initAudio() {
+            if (audioCtx) return;
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            masterGain = audioCtx.createGain();
+            masterGain.gain.value = document.getElementById('volumeSlider').value / 100;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const bar = entry.target;
-          const width = bar.getAttribute('data-width');
-          bar.style.width = width;
+            analyser = audioCtx.createAnalyser();
+            analyser.fftSize = 64;
+            analyser.smoothingTimeConstant = 0.75;
+            masterGain.connect(analyser);
+            analyser.connect(audioCtx.destination);
+
+            if (!visualizerRunning) {
+                visualizerRunning = true;
+                drawVisualizer();
+            }
         }
-      });
-    }, observerOptions);
 
-    skillBars.forEach(bar => observer.observe(bar));
+        /* ==========================================================
+           Category Color Map
+        ========================================================== */
+        const catColors = {
+            all:    { color: '#c0c0e0', dim: 'rgba(192,192,224,0.08)' },
+            funny:  { color: '#ff2d75', dim: 'rgba(255,45,117,0.10)' },
+            animals:{ color: '#00e676', dim: 'rgba(0,230,118,0.10)' },
+            movies: { color: '#ffab00', dim: 'rgba(255,171,0,0.10)' },
+            games:  { color: '#00e5ff', dim: 'rgba(0,229,255,0.10)' },
+            custom: { color: '#b388ff', dim: 'rgba(179,136,255,0.10)' },
+        };
 
-    // Add parallax effect to shapes
-    document.addEventListener('mousemove', (e) => {
-      const shapes = document.querySelectorAll('.shape');
-      const x = (e.clientX / window.innerWidth - 0.5) * 20;
-      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+        /* ==========================================================
+           Keyboard Key Map
+        ========================================================== */
+        const keyMap = ['1','2','3','4','5','Q','W','E','R','T','A','S','D','F','G','Z','X','C','V','B'];
 
-      shapes.forEach((shape, index) => {
-        const speed = (index + 1) * 5;
-        shape.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-      });
-    });
+        /* ==========================================================
+           Sound Definitions (16 synthesized sounds)
+        ========================================================== */
+        const soundDefs = [
+            // ——— Funny ———
+            {
+                id: 'clap', name: 'Clap', category: 'funny', icon: 'fa-hands-clapping', duration: 0.12,
+                play() {
+                    const now = audioCtx.currentTime;
+                    for (let i = 0; i < 3; i++) {
+                        const off = i * 0.012;
+                        const src = audioCtx.createBufferSource();
+                        src.buffer = getNoiseBuffer();
+                        const bp = audioCtx.createBiquadFilter();
+                        bp.type = 'bandpass'; bp.frequency.value = 2200 + i * 300; bp.Q.value = 0.7;
+                        const g = audioCtx.createGain();
+                        g.gain.setValueAtTime(0.6, now + off);
+                        g.gain.exponentialRampToValueAtTime(0.001, now + off + 0.07);
+                        src.connect(bp).connect(g).connect(masterGain);
+                        src.start(now + off, 0, 0.07);
+                        src.stop(now + off + 0.08);
+                        activeNodes.push(src);
+                    }
+                }
+            },
+            {
+                id: 'laugh', name: 'Laugh', category: 'funny', icon: 'fa-face-laugh-squint', duration: 0.5,
+                play() {
+                    const now = audioCtx.currentTime;
+                    [420, 370, 330, 380].forEach((f, i) => {
+                        const t = now + i * 0.12;
+                        const osc = audioCtx.createOscillator();
+                        osc.type = 'sawtooth'; osc.frequency.value = f;
+                        const lp = audioCtx.createBiquadFilter();
+                        lp.type = 'lowpass'; lp.frequency.value = 1600;
+                        const g = audioCtx.createGain();
+                        g.gain.setValueAtTime(0.001, t);
+                        g.gain.linearRampToValueAtTime(0.28, t + 0.015);
+                        g.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
+                        osc.connect(lp).connect(g).connect(masterGain);
+                        osc.start(t); osc.stop(t + 0.1);
+                        activeNodes.push(osc);
+                    });
+                }
+            },
+            {
+                id: 'whistle', name: 'Whistle', category: 'funny', icon: 'fa-wind', duration: 0.85,
+                play() {
+                    const now = audioCtx.currentTime;
+                    const osc = audioCtx.createOscillator();
+                    osc.type = 'sine'; osc.frequency.value = 1400;
+                    const lfo = audioCtx.createOscillator(); lfo.frequency.value = 5.5;
+                    const lfoG = audioCtx.createGain(); lfoG.gain.value = 90;
+                    lfo.connect(lfoG).connect(osc.frequency);
+                    const g = audioCtx.createGain();
+                    g.gain.setValueAtTime(0.001, now);
+                    g.gain.linearRampToValueAtTime(0.35, now + 0.12);
+                    g.gain.setValueAtTime(0.35, now + 0.6);
+                    g.gain.linearRampToValueAtTime(0.001, now + 0.8);
+                    osc.connect(g).connect(masterGain);
+                    osc.start(now); osc.stop(now + 0.85);
+                    lfo.start(now); lfo.stop(now + 0.85);
+                    activeNodes.push(osc, lfo);
+                }
+            },
+            {
+                id: 'splat', name: 'Splat', category: 'funny', icon: 'fa-droplet', duration: 0.35,
+                play() {
+                    const now = audioCtx.currentTime;
+                    const src = audioCtx.createBufferSource();
+                    src.buffer = getNoiseBuffer();
+                    const lp = audioCtx.createBiquadFilter();
+                    lp.type = 'lowpass'; lp.Q.value = 4;
+                    lp.frequency.setValueAtTime(6000, now);
+                    lp.frequency.exponentialRampToValueAtTime(180, now + 0.3);
+                    const g = audioCtx.createGain();
+                    g.gain.setValueAtTime(0.55, now);
+                    g.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+                    src.connect(lp).connect(g).connect(masterGain);
+                    src.start(now, 0, 0.4); src.stop(now + 0.4);
+                    activeNodes.push(src);
+                }
+            },
+            {
+                id: 'pop', name: 'Pop', category: 'funny', icon: 'fa-burst', duration: 0.07,
+                play() {
+                    const now = audioCtx.currentTime;
+                    const osc = audioCtx.createOscillator();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(650, now);
+                    osc.frequency.exponentialRampToValueAtTime(80, now + 0.055);
+                    const g = audioCtx.createGain();
+                    g.gain.setValueAtTime(0.55, now);
+                    g.gain.exponentialRampToValueAtTime(0.001, now + 0.055);
+                    osc.connect(g).connect(masterGain);
+                    osc.start(now); osc.stop(now + 0.06);
+                    activeNodes.push(osc);
+                }
+            },
+            // ——— Animals ———
+            {
+                id: 'dog', name: 'Dog Bark', category: 'animals', icon: 'fa-dog', duration: 0.35,
+                play() {
+                    const now = audioCtx.currentTime;
+                    for (let b = 0; b < 2; b++) {
+                        const t = now + b * 0.17;
+                        const osc = audioCtx.createOscillator();
+                        osc.type = 'sawtooth';
+                        osc.frequency.setValueAtTime(300, t);
+                        osc.frequency.linearRampToValueAtTime(180, t + 0.1);
+                        const bp = audioCtx.createBiquadFilter();
+                        bp.type = 'bandpass'; bp.frequency.value = 500; bp.Q.value = 3;
+                        const g = audioCtx.createGain();
+                        g.gain.setValueAtTime(0.001, t);
+                        g.gain.linearRampToValueAtTime(0.45, t + 0.01);
+                        g.gain.exponentialRampToValueAtTime(0.001, t + 0.11);
+                        osc.connect(bp).connect(g).connect(masterGain);
+                        osc.start(t); osc.stop(t + 0.12);
+                        activeNodes.push(osc);
+                    }
+                }
+            },
+            {
+                id: 'cat', name: 'Cat Meow', category: 'animals', icon: 'fa-cat', duration: 0.55,
+                play() {
+                    const now = audioCtx.currentTime;
+                    const osc = audioCtx.createOscillator();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(600, now);
+                    osc.frequency.linearRampToValueAtTime(950, now + 0.2);
+                    osc.frequency.linearRampToValueAtTime(500, now + 0.5);
+                    const lfo = audioCtx.createOscillator(); lfo.frequency.value = 6;
+                    const lfoG = audioCtx.createGain(); lfoG.gain.value = 35;
+                    lfo.connect(lfoG).connect(osc.frequency);
+                    const g = audioCtx.createGain();
+                    g.gain.setValueAtTime(0.001, now);
+                    g.gain.linearRampToValueAtTime(0.35, now + 0.06);
+                    g.gain.setValueAtTime(0.35, now + 0.35);
+                    g.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+                    osc.connect(g).connect(masterGain);
+                    osc.start(now); osc.stop(now + 0.55);
+                    lfo.start(now); lfo.stop(now + 0.55);
+                    activeNodes.push(osc, lfo);
+                }
+            },
+            {
+                id: 'bird', name: 'Bird Chirp', category: 'animals', icon: 'fa-dove', duration: 0.38,
+                play() {
+                    const now = audioCtx.currentTime;
+                    for (let i = 0; i < 3; i++) {
+                        const t = now + i * 0.11;
+                        const base = 3200 + i * 250;
+                        const osc = audioCtx.createOscillator();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(base, t);
+                        osc.frequency.linearRampToValueAtTime(base + 500, t + 0.035);
+                        osc.frequency.linearRampToValueAtTime(base - 150, t + 0.07);
+                        const g = audioCtx.createGain();
+                        g.gain.setValueAtTime(0.001, t);
+                        g.gain.linearRampToValueAtTime(0.22, t + 0.008);
+                        g.gain.exponentialRampToValueAtTime(0.001, t + 0.08);
+                        osc.connect(g).connect(masterGain);
+                        osc.start(t); osc.stop(t + 0.09);
+                        activeNodes.push(osc);
+                    }
+                }
+            },
+            {
+                id: 'frog', name: 'Frog', category: 'animals', icon: 'fa-frog', duration: 0.42,
+                play() {
+                    const now = audioCtx.currentTime;
+                    const osc = audioCtx.createOscillator();
+                    osc.type = 'sine'; osc.frequency.value = 130;
+                    const lfo = audioCtx.createOscillator(); lfo.frequency.value = 28;
+                    const lfoG = audioCtx.createGain(); lfoG.gain.value = 0.28;
+                    const g = audioCtx.createGain(); g.gain.value = 0.38;
+                    lfo.connect(lfoG).connect(g.gain);
+                    const env = audioCtx.createGain();
+                    env.gain.setValueAtTime(0.001, now);
+                    env.gain.linearRampToValueAtTime(1, now + 0.015);
+                    env.gain.setValueAtTime(1, now + 0.35);
+                    env.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+                    osc.connect(g).connect(env).connect(masterGain);
+                    osc.start(now); osc.stop(now + 0.42);
+                    lfo.start(now); lfo.stop(now + 0.42);
+                    activeNodes.push(osc, lfo);
+                }
+            },
+            // ——— Movies ———
+            {
+                id: 'horn', name: 'Epic Horn', category: 'movies', icon: 'fa-bullhorn', duration: 1.6,
+                play() {
+                    const now = audioCtx.currentTime;
+                    [[180, 'sawtooth', 0.35], [360, 'sine', 0.12], [540, 'sine', 0.04]].forEach(([f, type, vol]) => {
+                        const osc = audioCtx.createOscillator();
+                        osc.type = type; osc.frequency.value = f;
+                        const lp = audioCtx.createBiquadFilter();
+                        lp.type = 'lowpass'; lp.frequency.value = 2200;
+                        const g = audioCtx.createGain();
+                        g.gain.setValueAtTime(0.001, now);
+                        g.gain.linearRampToValueAtTime(vol, now + 0.25);
+                        g.gain.setValueAtTime(vol, now + 0.9);
+                        g.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+                        osc.connect(lp).connect(g).connect(masterGain);
+                        osc.start(now); osc.stop(now + 1.55);
+                        activeNodes.push(osc);
+                    });
+                }
+            },
+            {
+                id: 'suspense', name: 'Suspense', category: 'movies', icon: 'fa-ghost', duration: 2.1,
+                play() {
+                    const now = audioCtx.currentTime;
+                    const osc = audioCtx.createOscillator();
+                    osc.type = 'sine'; osc.frequency.value = 72;
+                    const lfo = audioCtx.createOscillator(); lfo.frequency.value = 1.5;
+                    const lfoG = audioCtx.createGain(); lfoG.gain.value = 0.18;
+                    const g = audioCtx.createGain(); g.gain.value = 0.3;
+                    lfo.connect(lfoG).connect(g.gain);
+                    const env = audioCtx.createGain();
+                    env.gain.setValueAtTime(0.001, now);
+                    env.gain.linearRampToValueAtTime(1, now + 0.5);
+                    env.gain.setValueAtTime(1, now + 1.5);
+                    env.gain.exponentialRampToValueAtTime(0.001, now + 2.0);
+                    osc.connect(g).connect(env).connect(masterGain);
+                    osc.start(now); osc.stop(now + 2.1);
+                    lfo.start(now); lfo.stop(now + 2.1);
+                    activeNodes.push(osc, lfo);
+                }
+            },
+            {
+                id: 'laser', name: 'Laser', category: 'movies', icon: 'fa-bolt', duration: 0.42,
+                play() {
+                    const now = audioCtx.currentTime;
+                    const osc = audioCtx.createOscillator();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(4500, now);
+                    osc.frequency.exponentialRampToValueAtTime(80, now + 0.4);
+                    const lp = audioCtx.createBiquadFilter();
+                    lp.type = 'lowpass';
+                    lp.frequency.setValueAtTime(6000, now);
+                    lp.frequency.exponentialRampToValueAtTime(400, now + 0.4);
+                    const g = audioCtx.createGain();
+                    g.gain.setValueAtTime(0.35, now);
+                    g.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+                    osc.connect(lp).connect(g).connect(masterGain);
+                    osc.start(now); osc.stop(now + 0.42);
+                    activeNodes.push(osc);
+                }
+            },
+            // ——— Games ———
+            {
+                id: 'coin', name: 'Coin', category: 'games', icon: 'fa-coins', duration: 0.15,
+                play() {
+                    const now = audioCtx.currentTime;
+                    [1200, 1600].forEach((f, i) => {
+                        const t = now + i * 0.07;
+                        const osc = audioCtx.createOscillator();
+                        osc.type = 'square'; osc.frequency.value = f;
+                        const g = audioCtx.createGain();
+                        g.gain.setValueAtTime(0.12, t);
+                        g.gain.exponentialRampToValueAtTime(0.001, t + 0.055);
+                        osc.connect(g).connect(masterGain);
+                        osc.start(t); osc.stop(t + 0.06);
+                        activeNodes.push(osc);
+                    });
+                }
+            },
+            {
+                id: 'powerup', name: 'Power Up', category: 'games', icon: 'fa-arrow-up', duration: 0.55,
+                play() {
+                    const now = audioCtx.currentTime;
+                    [300, 400, 520, 700, 920].forEach((f, i) => {
+                        const t = now + i * 0.075;
+                        const osc = audioCtx.createOscillator();
+                        osc.type = 'square'; osc.frequency.value = f;
+                        const lp = audioCtx.createBiquadFilter();
+                        lp.type = 'lowpass'; lp.frequency.value = 3500;
+                        const g = audioCtx.createGain();
+                        g.gain.setValueAtTime(0.001, t);
+                        g.gain.linearRampToValueAtTime(0.13, t + 0.008);
+                        g.gain.exponentialRampToValueAtTime(0.001, t + 0.09);
+                        osc.connect(lp).connect(g).connect(masterGain);
+                        osc.start(t); osc.stop(t + 0.1);
+                        activeNodes.push(osc);
+                    });
+                }
+            },
+            {
+                id: 'explosion', name: 'Explosion', category: 'games', icon: 'fa-bomb', duration: 1.0,
+                play() {
+                    const now = audioCtx.currentTime;
+                    // Noise burst
+                    const src = audioCtx.createBufferSource();
+                    src.buffer = getNoiseBuffer();
+                    const lp = audioCtx.createBiquadFilter();
+                    lp.type = 'lowpass';
+                    lp.frequency.setValueAtTime(180, now);
+                    lp.frequency.linearRampToValueAtTime(4500, now + 0.04);
+                    lp.frequency.exponentialRampToValueAtTime(80, now + 0.85);
+                    const ng = audioCtx.createGain();
+                    ng.gain.setValueAtTime(0.65, now);
+                    ng.gain.exponentialRampToValueAtTime(0.001, now + 0.9);
+                    src.connect(lp).connect(ng).connect(masterGain);
+                    src.start(now, 0, 1.0); src.stop(now + 1.0);
+                    activeNodes.push(src);
+                    // Sub bass
+                    const osc = audioCtx.createOscillator();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(65, now);
+                    osc.frequency.exponentialRampToValueAtTime(18, now + 0.8);
+                    const og = audioCtx.createGain();
+                    og.gain.setValueAtTime(0.45, now);
+                    og.gain.exponentialRampToValueAtTime(0.001, now + 0.85);
+                    osc.connect(og).connect(masterGain);
+                    osc.start(now); osc.stop(now + 0.9);
+                    activeNodes.push(osc);
+                }
+            },
+            {
+                id: 'victory', name: 'Victory', category: 'games', icon: 'fa-trophy', duration: 0.75,
+                play() {
+                    const now = audioCtx.currentTime;
+                    [523, 659, 784, 1047].forEach((f, i) => {
+                        const t = now + i * 0.14;
+                        const osc = audioCtx.createOscillator();
+                        osc.type = 'triangle'; osc.frequency.value = f;
+                        const g = audioCtx.createGain();
+                        g.gain.setValueAtTime(0.001, t);
+                        g.gain.linearRampToValueAtTime(0.22, t + 0.02);
+                        g.gain.setValueAtTime(0.22, t + 0.18);
+                        g.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
+                        osc.connect(g).connect(masterGain);
+                        osc.start(t); osc.stop(t + 0.42);
+                        activeNodes.push(osc);
+                    });
+                }
+            },
+        ];
 
-    // Nav background on scroll
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('nav');
-      if (window.scrollY > 50) {
-        nav.style.background = 'rgba(10, 10, 15, 0.95)';
-      } else {
-        nav.style.background = 'rgba(10, 10, 15, 0.8)';
-      }
-    });
+        /* ==========================================================
+           DOM References
+        ========================================================== */
+        const grid = document.getElementById('soundGrid');
+        const soundCountEl = document.getElementById('soundCount');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const stopBtn = document.getElementById('stopBtn');
+        const loopBtn = document.getElementById('loopBtn');
+        const recordModal = document.getElementById('recordModal');
+        const recCircleBtn = document.getElementById('recCircleBtn');
+        const recStatus = document.getElementById('recStatus');
+        const previewRow = document.getElementById('previewRow');
+        const soundNameInput = document.getElementById('soundNameInput');
+        const modalCancelBtn = document.getElementById('modalCancelBtn');
+        const modalSaveBtn = document.getElementById('modalSaveBtn');
+        const catTabs = document.querySelectorAll('.cat-tab');
 
-// Horror Maze Escape Game
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
-    const startBtn = document.getElementById('startBtn');
-    const scoreDisplay = document.getElementById('scoreDisplay');
-    const highDisplay = document.getElementById('highDisplay');
-    const healthFill = document.getElementById('healthFill');
+        /* ==========================================================
+           Category Tab Setup
+        ========================================================== */
+        catTabs.forEach(tab => {
+            const cat = tab.dataset.cat;
+            const c = catColors[cat];
+            tab.style.setProperty('--tab-color', c.color);
+            tab.style.setProperty('--tab-dim', c.dim);
+            tab.addEventListener('click', () => switchCategory(cat));
+        });
 
-    let player = { x: 350, y: 450, size: 20, speed: 3, sanity: 100, flashlightOn: true };
-    let monster = { x: 100, y: 100, size: 35, speed: 1.5, awake: false, chaseTimer: 0 };
-    let maze = [];
-    let exit = { x: 0, y: 0 };
-    let walls = [];
-    let gameTime = 0;
-    let highTime = 0;
-    let gameRunning = false;
-    let animationId;
-    let keys = {};
-    let darkness = 0;
-    let footsteps = [];
-    let keysPressed = {};
-
-    document.addEventListener('keydown', (e) => { 
-      keysPressed[e.code] = true;
-      if(e.code === 'Space' && !gameRunning) {
-        e.preventDefault();
-        startGame();
-      }
-      if(['KeyW','KeyA','KeyS','KeyD','KeyE','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','ShiftLeft','ShiftRight'].includes(e.code)) {
-        e.preventDefault();
-      }
-    });
-
-    // Truth or Dare Game
-    const truthQuestions = [
-      "What's your biggest fear?", "What's the most embarrassing thing you've done?", "Who is your secret crush?",
-      "What's your worst habit?", "What's a secret you've never told anyone?", "What's the biggest lie you've told?",
-      "What's your biggest regret?", "Who is your best friend and why?", "What's the weirdest dream you've had?",
-      "What's your hidden talent?", "What would you do if you were invisible?", "What's your guilty pleasure?",
-      "What's the most trouble you've gotten into?", "What's your biggest pet peeve?", "What's something you're proud of?",
-      "What's your most unpopular opinion?", "What's the last thing you searched on your phone?",
-      "What's your biggest insecurity?", "If you could swap lives with anyone, who would it be?",
-      "What's the craziest thing on your bucket list?", "What's your favorite memory with friends?",
-      "What's your most embarrassing moment?", "What's something you'd change about yourself?",
-      "What's your favorite thing about yourself?", "What's the worst gift you've ever received?",
-      "What's your biggest secret wish?", "What's the most childish thing you still do?",
-      "Who was your first celebrity crush?", "What's your comfort food?", "What's the bravest thing you've done?"
-    ];
-
-    const dareChallenges = [
-      "Do 10 pushups right now!", "Sing a song of your choice!", "Dance without music for 30 seconds!",
-      "Talk with your tongue sticking out for 1 minute!", "Do your best impression of someone in the room!",
-      "Let someone draw a mustache on your face!", "Keep your eyes closed until your next turn!",
-      "Do your best animal impression!", "Speak in an accent for the next 3 rounds!",
-      "Let the group give you a new hairstyle!", "Eat a spoonful of condiment chosen by others!",
-      "Do your best scary face!", "Walk backwards everywhere for the next 5 minutes!",
-      "Say something nice about every person in the room!", "Do 20 jumping jacks!",
-      "Let someone tickle you for 30 seconds!", "Do your best celebrity impression!",
-      "Make everyone laugh within 30 seconds!", "Do the worm or show your best dance move!",
-      "Speak only in questions for 2 rounds!", "Let someone post anything on your social media!",
-      "Show the last photo you took!", "Do your best model walk!", "Howl like a wolf!",
-      "Hold a plank for 30 seconds!", "Recite the alphabet backwards!", "Make up a rap about the group!",
-      "Let the person to your right style your hair!", "Do your best evil laugh!",
-      "Talk in third person for 3 rounds!", "Eat a raw piece of garlic!"
-    ];
-
-    let players = [];
-    let currentPlayerIndex = 0;
-    let currentDifficulty = 'easy';
-    let isSpinning = false;
-    let timerInterval = null;
-
-    const playerNameInput = document.getElementById('playerNameInput');
-    const addPlayerBtn = document.getElementById('addPlayerBtn');
-    const playersList = document.getElementById('playersList');
-    const startGameBtn = document.getElementById('startGameBtn');
-    const playersSetup = document.getElementById('playersSetup');
-    const gameArea = document.getElementById('gameArea');
-    const currentPlayerEl = document.getElementById('currentPlayer');
-    const wheel = document.getElementById('wheel');
-    const spinBtn = document.getElementById('spinBtn');
-    const resultCard = document.getElementById('resultCard');
-    const cardType = document.getElementById('cardType');
-    const cardText = document.getElementById('cardText');
-    const resultIcon = document.getElementById('resultIcon');
-    const timerEl = document.getElementById('timer');
-
-    addPlayerBtn.addEventListener('click', () => {
-      const name = playerNameInput.value.trim();
-      if (name) {
-        players.push(name);
-        playerNameInput.value = '';
-        updatePlayersList();
-      }
-    });
-
-    playerNameInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const name = playerNameInput.value.trim();
-        if (name) {
-          players.push(name);
-          playerNameInput.value = '';
-          updatePlayersList();
+        function switchCategory(cat) {
+            currentCategory = cat;
+            catTabs.forEach(t => {
+                const isActive = t.dataset.cat === cat;
+                t.classList.toggle('active', isActive);
+                t.setAttribute('aria-selected', isActive);
+            });
+            renderGrid();
         }
-      }
-    });
 
-    function updatePlayersList() {
-      playersList.innerHTML = players.map((p, i) => 
-        `<span class="player-tag">${p} <span onclick="removePlayer(${i})">×</span></span>`
-      ).join('');
-    }
+        /* ==========================================================
+           Render Sound Grid
+        ========================================================== */
+        function renderGrid() {
+            grid.innerHTML = '';
+            let sounds;
+            if (currentCategory === 'all') {
+                sounds = [...soundDefs];
+            } else if (currentCategory === 'custom') {
+                sounds = [...customSounds];
+            } else {
+                sounds = soundDefs.filter(s => s.category === currentCategory);
+            }
 
-    window.removePlayer = function(index) {
-      players.splice(index, 1);
-      updatePlayersList();
-    };
+            // Update count
+            const catLabel = currentCategory === 'all' ? 'all' : currentCategory;
+            soundCountEl.textContent = `Showing ${sounds.length} sound${sounds.length !== 1 ? 's' : ''}${currentCategory !== 'all' ? ' — ' + catLabel.charAt(0).toUpperCase() + catLabel.slice(1) : ''}`;
 
-    startGameBtn.addEventListener('click', () => {
-      if (players.length < 2) {
-        alert('Add at least 2 players!');
-        return;
-      }
-      playersSetup.style.display = 'none';
-      gameArea.style.display = 'block';
-      updateCurrentPlayer();
-    });
+            sounds.forEach((sound, idx) => {
+                const key = keyMap[idx] || '';
+                const c = catColors[sound.category] || catColors.custom;
+                const btn = document.createElement('button');
+                btn.className = 'sound-btn';
+                btn.style.setProperty('--cat-color', c.color);
+                btn.style.setProperty('--cat-dim', c.dim);
+                btn.style.animationDelay = `${idx * 0.04}s`;
+                btn.setAttribute('aria-label', `Play ${sound.name}`);
+                btn.innerHTML = `
+                    ${key ? `<span class="btn-key">${key}</span>` : ''}
+                    <div class="btn-icon"><i class="fa-solid ${sound.icon}"></i></div>
+                    <div class="btn-name">${sound.name}</div>
+                `;
+                btn.addEventListener('click', (e) => playSound(sound, btn, e));
+                grid.appendChild(btn);
+            });
 
-    function updateCurrentPlayer() {
-      currentPlayerEl.textContent = `Player: ${players[currentPlayerIndex]}`;
-    }
-
-    document.querySelectorAll('.btn-diff').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.btn-diff').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentDifficulty = btn.dataset.level;
-      });
-    });
-
-    document.querySelector('.btn-diff[data-level="easy"]').classList.add('active');
-
-    spinBtn.addEventListener('click', spinWheel);
-    resultCard.addEventListener('click', () => {
-      resultCard.classList.toggle('flipped');
-    });
-
-    function spinWheel() {
-      if (isSpinning) return;
-      isSpinning = true;
-      spinBtn.disabled = true;
-      resultCard.classList.remove('flipped');
-      
-      const rotation = 1800 + Math.random() * 360;
-      wheel.style.transform = `rotate(${rotation}deg)`;
-      
-      setTimeout(() => {
-        const isTruth = rotation % 360 < 180;
-        showResult(isTruth);
-        isSpinning = false;
-        spinBtn.disabled = false;
-      }, 3000);
-    }
-
-    function showResult(isTruth) {
-      const isDare = !isTruth;
-      cardType.textContent = isTruth ? 'TRUTH' : 'DARE';
-      cardIcon = isTruth ? '🤔' : '😈';
-      document.querySelector('.card-front .card-icon').textContent = cardIcon;
-      resultIcon.textContent = isTruth ? '🤔' : '💥';
-      
-      let questions = isTruth ? truthQuestions : dareChallenges;
-      let filtered = questions;
-      
-      if (currentDifficulty === 'easy') filtered = questions.slice(0, 10);
-      else if (currentDifficulty === 'medium') filtered = questions.slice(10, 20);
-      
-      cardText.textContent = filtered[Math.floor(Math.random() * filtered.length)];
-      
-      resultCard.classList.add('flipped');
-      
-      if (isDare) {
-        startTimer();
-      } else {
-        timerEl.textContent = 'Truth - No timer needed!';
-      }
-    }
-
-    function startTimer() {
-      let timeLeft = 30;
-      timerEl.textContent = `Time: ${timeLeft}s`;
-      clearInterval(timerInterval);
-      timerInterval = setInterval(() => {
-        timeLeft--;
-        timerEl.textContent = `Time: ${timeLeft}s`;
-        if (timeLeft <= 0) {
-          clearInterval(timerInterval);
-          timerEl.textContent = "Time's up!";
+            // Add "Record New" button for custom category
+            if (currentCategory === 'custom') {
+                const addBtn = document.createElement('button');
+                addBtn.className = 'sound-btn add-btn';
+                addBtn.style.setProperty('--cat-color', catColors.custom.color);
+                addBtn.style.setProperty('--cat-dim', catColors.custom.dim);
+                addBtn.style.animationDelay = `${sounds.length * 0.04}s`;
+                addBtn.setAttribute('aria-label', 'Record new custom sound');
+                addBtn.innerHTML = `
+                    <div class="btn-icon"><i class="fa-solid fa-plus"></i></div>
+                    <div class="btn-name">Record New</div>
+                `;
+                addBtn.addEventListener('click', openRecordModal);
+                grid.appendChild(addBtn);
+            }
         }
-      }, 1000);
-    }
 
-    setTimeout(() => {
-      currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-      updateCurrentPlayer();
-    }, 5000);
-  </script>
+        /* ==========================================================
+           Play / Stop Sound
+        ========================================================== */
+        function playSound(sound, btn, event) {
+            initAudio();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            // Clear previous loop
+            if (loopTimer) { clearInterval(loopTimer); loopTimer = null; }
+
+            // Stop current nodes
+            activeNodes.forEach(n => { try { n.stop(); } catch(e) {} });
+            activeNodes = [];
+
+            // Play the sound
+            sound.play();
+            lastPlayedSound = sound;
+
+            // Visual feedback
+            document.querySelectorAll('.sound-btn.active').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            if (event) createRipple(event, btn);
+
+            // Auto-remove active state (unless looping)
+            if (!isLooping) {
+                const dur = (sound.duration || 0.5) * 1000 + 150;
+                setTimeout(() => btn.classList.remove('active'), dur);
+            }
+
+            // Loop mode
+            if (isLooping) {
+                const interval = Math.max(300, (sound.duration || 0.5) * 1000 + 100);
+                loopTimer = setInterval(() => {
+                    activeNodes.forEach(n => { try { n.stop(); } catch(e) {} });
+                    activeNodes = [];
+                    sound.play();
+                }, interval);
+            }
+        }
+
+        function stopAll() {
+            if (loopTimer) { clearInterval(loopTimer); loopTimer = null; }
+            activeNodes.forEach(n => {
+                try { n.stop(); } catch(e) {}
+                try { n.disconnect(); } catch(e) {}
+            });
+            activeNodes = [];
+            lastPlayedSound = null;
+            document.querySelectorAll('.sound-btn.active').forEach(b => b.classList.remove('active'));
+        }
+
+        /* ==========================================================
+           Ripple Effect
+        ========================================================== */
+        function createRipple(event, btn) {
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple';
+            const rect = btn.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (event.clientX - rect.left - size / 2) + 'px';
+            ripple.style.top = (event.clientY - rect.top - size / 2) + 'px';
+            btn.appendChild(ripple);
+            ripple.addEventListener('animationend', () => ripple.remove());
+        }
+
+        /* ==========================================================
+           Volume Control
+        ========================================================== */
+        volumeSlider.addEventListener('input', () => {
+            if (masterGain) masterGain.gain.value = volumeSlider.value / 100;
+        });
+
+        /* ==========================================================
+           Stop Button
+        ========================================================== */
+        stopBtn.addEventListener('click', stopAll);
+
+        /* ==========================================================
+           Loop Toggle
+        ========================================================== */
+        loopBtn.addEventListener('click', () => {
+            isLooping = !isLooping;
+            loopBtn.classList.toggle('active-loop', isLooping);
+            if (!isLooping && loopTimer) {
+                clearInterval(loopTimer);
+                loopTimer = null;
+            }
+        });
+
+        /* ==========================================================
+           Keyboard Shortcuts
+        ========================================================== */
+        document.addEventListener('keydown', (e) => {
+            // Don't trigger when typing in input
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            if (recordModal.open) return;
+
+            const key = e.key.toUpperCase();
+            const idx = keyMap.indexOf(key);
+            if (idx === -1) return;
+
+            const btns = grid.querySelectorAll('.sound-btn:not(.add-btn)');
+            if (idx < btns.length) {
+                e.preventDefault();
+                const btn = btns[idx];
+                btn.click();
+            }
+        });
+
+        /* ==========================================================
+           Visualizer
+        ========================================================== */
+        function drawVisualizer() {
+            const canvas = document.getElementById('visualizer');
+            const dpr = window.devicePixelRatio || 1;
+            const displayW = canvas.offsetWidth;
+            const displayH = canvas.offsetHeight;
+            canvas.width = displayW * dpr;
+            canvas.height = displayH * dpr;
+            const ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+
+            const barCount = 48;
+            const gap = 2;
+            const barW = (displayW / barCount) - gap;
+
+            function draw() {
+                ctx.clearRect(0, 0, displayW, displayH);
+                const data = new Uint8Array(analyser.frequencyBinCount);
+                analyser.getByteFrequencyData(data);
+
+                for (let i = 0; i < barCount; i++) {
+                    const dataIdx = Math.floor(i * data.length / barCount);
+                    const val = data[dataIdx] / 255;
+                    const barH = Math.max(1.5, val * displayH * 0.9);
+                    const hue = (i / barCount) * 80 + 160; // cyan → magenta range
+                    const alpha = 0.15 + val * 0.75;
+                    ctx.fillStyle = `hsla(${hue}, 90%, 60%, ${alpha})`;
+                    const x = i * (barW + gap);
+                    ctx.beginPath();
+                    ctx.roundRect(x, displayH - barH, barW, barH, 1);
+                    ctx.fill();
+                }
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        /* ==========================================================
+           Recording Feature
+        ========================================================== */
+        let mediaRecorder = null;
+        let recordedChunks = [];
+        let recordedBlob = null;
+        let isRecording = false;
+        let recStartTime = 0;
+        let recTimerInterval = null;
+
+        function openRecordModal() {
+            resetRecordState();
+            recordModal.showModal();
+        }
+
+        function resetRecordState() {
+            recordedChunks = [];
+            recordedBlob = null;
+            isRecording = false;
+            recStatus.textContent = 'Click to start recording';
+            recStatus.className = 'rec-status';
+            previewRow.innerHTML = '';
+            soundNameInput.value = '';
+            modalSaveBtn.disabled = true;
+            recCircleBtn.classList.remove('recording');
+            recCircleBtn.innerHTML = '<i class="fa-solid fa-microphone"></i>';
+            if (recTimerInterval) clearInterval(recTimerInterval);
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                try { mediaRecorder.stop(); } catch(e) {}
+            }
+        }
+
+        recCircleBtn.addEventListener('click', async () => {
+            if (!isRecording) {
+                // Start recording
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    recordedChunks = [];
+                    mediaRecorder = new MediaRecorder(stream);
+                    mediaRecorder.ondataavailable = (e) => {
+                        if (e.data.size > 0) recordedChunks.push(e.data);
+                    };
+                    mediaRecorder.onstop = () => {
+                        recordedBlob = new Blob(recordedChunks, { type: 'audio/webm' });
+                        stream.getTracks().forEach(t => t.stop());
+                        recCircleBtn.classList.remove('recording');
+                        recCircleBtn.innerHTML = '<i class="fa-solid fa-microphone"></i>';
+                        recStatus.textContent = 'Recording saved — preview below';
+                        recStatus.className = 'rec-status';
+                        clearInterval(recTimerInterval);
+                        // Show preview button
+                        previewRow.innerHTML = '<button class="preview-btn" id="previewBtn"><i class="fa-solid fa-play"></i> Preview</button>';
+                        document.getElementById('previewBtn').addEventListener('click', previewRecording);
+                        modalSaveBtn.disabled = false;
+                    };
+                    mediaRecorder.start();
+                    isRecording = true;
+                    recCircleBtn.classList.add('recording');
+                    recCircleBtn.innerHTML = '<i class="fa-solid fa-stop"></i>';
+                    recStatus.textContent = 'Recording...';
+                    recStatus.className = 'rec-status';
+                    recStartTime = Date.now();
+                    recTimerInterval = setInterval(() => {
+                        const elapsed = ((Date.now() - recStartTime) / 1000).toFixed(1);
+                        recStatus.textContent = `Recording... ${elapsed}s`;
+                    }, 100);
+                } catch (err) {
+                    recStatus.textContent = 'Microphone access denied';
+                    recStatus.className = 'rec-status error';
+                }
+            } else {
+                // Stop recording
+                if (mediaRecorder && mediaRecorder.state === 'recording') {
+                    mediaRecorder.stop();
+                }
+                isRecording = false;
+            }
+        });
+
+        function previewRecording() {
+            if (!recordedBlob) return;
+            const url = URL.createObjectURL(recordedBlob);
+            const audio = new Audio(url);
+            audio.play();
+            audio.onended = () => URL.revokeObjectURL(url);
+        }
+
+        modalCancelBtn.addEventListener('click', () => {
+            recordModal.close();
+            resetRecordState();
+        });
+
+        modalSaveBtn.addEventListener('click', async () => {
+            if (!recordedBlob) return;
+            const name = soundNameInput.value.trim() || 'Custom ' + (customSounds.length + 1);
+            try {
+                initAudio();
+                const arrayBuf = await recordedBlob.arrayBuffer();
+                const audioBuffer = await audioCtx.decodeAudioData(arrayBuf);
+                customSounds.push({
+                    id: 'custom_' + Date.now(),
+                    name: name,
+                    category: 'custom',
+                    icon: 'fa-microphone',
+                    duration: audioBuffer.duration,
+                    play() {
+                        const src = audioCtx.createBufferSource();
+                        src.buffer = audioBuffer;
+                        src.connect(masterGain);
+                        src.start();
+                        activeNodes.push(src);
+                    }
+                });
+                recordModal.close();
+                resetRecordState();
+                if (currentCategory !== 'custom') switchCategory('custom');
+                else renderGrid();
+            } catch (err) {
+                recStatus.textContent = 'Failed to decode audio — try again';
+                recStatus.className = 'rec-status error';
+            }
+        });
+
+        // Close modal on backdrop click
+        recordModal.addEventListener('click', (e) => {
+            if (e.target === recordModal) {
+                recordModal.close();
+                resetRecordState();
+            }
+        });
+
+        /* ==========================================================
+           Initialize
+        ========================================================== */
+        renderGrid();
+    </script>
 </body>
 </html>
